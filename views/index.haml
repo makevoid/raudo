@@ -1,0 +1,6 @@
+%h1
+
+%p You are logged in as #{current_user}!
+
+%form{ action: "/logout", method: "post" }
+  %input{ type: "submit", value: "Logout" }
