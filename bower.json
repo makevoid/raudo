@@ -1,0 +1,23 @@
+{
+  "name": "mkdeploy",
+  "version": "0.1.0",
+  "homepage": "https://github.com/makevoid/mkdeploy",
+  "description": "Deploy system - ruby oauth deploy system + materialize UI by @45kb",
+  "main": "mkdeploy.js",
+  "moduleType": [
+    "es6",
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "materialize": "~0.96.1"
+  }
+}

@@ -11,8 +11,10 @@ class App < Sinatra::Base
     provider :google_oauth2, CONFIG[:google_oauth_identifier], CONFIG[:google_oauth_secret]
   end
 
+  UNPROTECTED_URLS = ["/style.css", "style.css"]
+  
   before do
-    if request.env['omniauth.auth'].nil? && !logged_in?
+    if request.env['omniauth.auth'].nil? && !logged_in? && !(UNPROTECTED_URLS.include? request.path)
       halt haml(:log_in)
     end
   end
@@ -44,4 +46,11 @@ class App < Sinatra::Base
     haml :index
   end
 
+  # style TODO change in prod
+  
+  get '/style.css' do
+    content_type "text/css"
+    File.read 'bower_components/materialize/dist/css/materialize.min.css'
+  end
+  
 end

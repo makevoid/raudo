@@ -4,7 +4,8 @@ PATH = File.expand_path "../../", __FILE__
 
 ALLOWED_USERS = [
   "makevoid@gmail.com",
-  "filippo.oretti@gmail.com"
+  "filippo.oretti@gmail.com",
+  "720kb.net@gmail.com"
 ]
 
 CONFIG = {}
@@ -29,3 +30,7 @@ CONFIG[:google_oauth_secret]      = secret
 # Authorized redirect URIs
 #
 #   http://1b69e9da.ngrok.com/auth/google_oauth2/callback
+
+
+# TODO: require_relative lib/exec
+#       require_relative models

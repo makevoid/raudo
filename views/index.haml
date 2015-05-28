@@ -1,10 +1,19 @@
 %h1
 
 %section.main
-  - Host.all.each do |host|
 
-    %section= host.name
+  %section.apps
+    %h1 App
+    -# - App.all.each do |app|
+    -#   %section= app.name
 
+  %section.machines
+    %h1 Machines
+    -# - Machine.all.each do |machine|
+    -#  %section= machine.name
+    -#  -# add new:
+    -#  -#   - add ssh key
+    -#  -#
 
 .right
   %p You are logged in as #{current_user}!

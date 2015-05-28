@@ -1,5 +1,6 @@
 DOMAINS = [
-  { domain: "makevoid.com", subdomains: "?" }
+  { name: :makevoid,  domain: "makevoid.com", subdomains: "?" },
+  { name: :mkvd,      domain: "mkvd.et",      subdomains: "?" },
 ]
 
 class Domain
