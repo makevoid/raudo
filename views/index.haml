@@ -15,6 +15,15 @@
     -#  -#   - add ssh key
     -#  -#
 
+
+  %section.machines
+    %h1 Machines
+    - Machine.all.each do |machine|
+      %section= machine.name
+      -# add new:
+      -#   - add ssh key
+      -#
+
 .right
   %p You are logged in as #{current_user}!
 
