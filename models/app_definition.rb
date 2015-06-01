@@ -1,5 +1,5 @@
 APP_DEFS = [
-  { name: "antani", repository: "makevoid/antani", type: "ruby" }
+  { name: "antani", repository: "makevoid/antani", type: "ruby", configs: {} }
 ]
 
 class AppDef

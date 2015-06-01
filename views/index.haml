@@ -16,13 +16,10 @@
     -#  -#
 
 
-  %section.machines
-    %h1 Machines
-    - Machine.all.each do |machine|
-      %section= machine.name
-      -# add new:
-      -#   - add ssh key
-      -#
+%nav
+  %a Apps
+  %a Machines
+  %a Domains
 
 .right
   %p You are logged in as #{current_user}!
