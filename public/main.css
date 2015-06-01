@@ -1,3 +1,9 @@
+/*Settings*/
+body{
+  background-image:url('http://i.imgur.com/gq1nGld.png');
+  background-repeat:no-repeat;
+  background-position:top right;
+}
 /*Utils*/
 .separator20vh{
   min-height: 150px;

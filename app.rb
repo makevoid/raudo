@@ -45,6 +45,18 @@ class App < Sinatra::Base
   get "/" do
     haml :index
   end
+  
+  get "/apps" do
+    haml :apps
+  end
+  
+  get "/domains" do
+    haml :domains
+  end
+  
+  get "/machines" do
+    haml :machines
+  end
 
   # style TODO change in prod
   
