@@ -12,6 +12,8 @@
       %div.nav-wrapper
         %a.brand-logo.navbar-logo
           &nbsp;Raudo
+        %a.button-collapse{href: "#", :data => {"activates" => "nav-mobile"}}
+          %i.mdi-navigation-menu
         %ul.right.hide-on-med-and-down
           %li
             %a{ href: "/apps" }     Apps
@@ -19,12 +21,33 @@
             %a{ href: "/machines" } Machines
           %li
             %a{ href: "/domains" }  Domains
+        %ul.side-nav#nav-mobile.font-20
+          %li
+            %a{ href: "/apps" }
+              .blue-text.mdi-action-extension
+                %span.grey-text.text-darken-2 Apps
+          %li
+            %a{ href: "/machines" }
+              .blue-text.mdi-action-dns
+                %span.grey-text.text-darken-2 Machines
+          %li
+            %a{ href: "/domains" }
+              .blue-text.mdi-action-language
+                %span.grey-text.text-darken-2 Domains
 
     %section.content
       = yield
-
+    %script{src: "bower_components/jquery/dist/jquery.min.js"}
+    %script{src: "bower_components/materialize/dist/js/materialize.min.js"}
 
     :javascript
+
+      //TODO mad pls put it where you desireee
+
+      $(document).ready(function () {
+
+        $('.button-collapse').sideNav();
+      });
 
       var filter = function(nodes, fn) {
         return Array.prototype.filter.call(nodes, fn);
