@@ -1,0 +1,33 @@
+%div.row
+  %h1 Apps 
+  %h3 \(Installed)
+  
+  %section
+    %a.right{ href: "javascript:void(0)" } Add app [+]
+
+    %ul
+      %li
+        %a{ href: "http://bitnfc.org" } 
+          BitNFC
+        .hidden.
+          Active tasks:
+          %ul
+            %li app1
+            %li app2
+        %a.right{ href: "javascript:void(0)" } toggle
+      %li 
+        %a{ href: "http://dogenfc.com" } 
+          DogeNFC
+        %a.right{ href: "javascript:void(0)" } toggle
+      %li 
+        %a{ href: "http://mkvd.net" } 
+          DogeNFC
+        %a.right{ href: "javascript:void(0)" } toggle
+       
+       
+       
+    -# - Machine.all.each do |machine|
+    -#  %section= machine.name
+    -#  -# add new:
+    -#  -#   - add ssh key
+    -#  -#

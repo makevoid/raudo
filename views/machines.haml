@@ -1,0 +1,30 @@
+%div.row
+  %h1 Machines
+  
+  %section
+    %a.right{ href: "javascript:void(0)" } Add machine [+]
+
+    %ul
+      %li
+        %a{ href: "http://720kb.net" } 
+          720kb.net
+        .hidden.
+          Installed apps:
+          %ul
+            %li app1
+            %li app2
+          =# haml :apps, locals: { apps: apps }
+          
+        %a.right{ href: "javascript:void(0)" } toggle
+      %li 
+        %a{ href: "http://mkvd.net" } 
+          mkvd.net
+        %a.right{ href: "javascript:void(0)" } toggle
+       
+       
+       
+    -# - Machine.all.each do |machine|
+    -#  %section= machine.name
+    -#  -# add new:
+    -#  -#   - add ssh key
+    -#  -#
