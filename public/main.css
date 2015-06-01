@@ -1,6 +1,7 @@
 /*Settings*/
-body{
-  font-family: Montserrat;
+/*Media*/
+.logo{
+  font-family: Montserrat ;
   letter-spacing:-0.5px;
 }
 /*Utils*/
