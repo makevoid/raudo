@@ -1,13 +1,13 @@
 %div.row
   %h1 Domains
-  
+
   %section
     %a.right{ href: "javascript:void(0)" } Add domain [+]
     .clear
-    
+
     %ul
-      %li
-        %a{ href: "http://720kb.net" } 
+      %li.card-panel
+        %a{ href: "http://720kb.net" }
           720kb.net
         %section.hidden.apps
           Installed apps:
@@ -15,10 +15,9 @@
             %li app1
             %li app2
           =# haml :apps, locals: { apps: apps }
-          
+
         %a.right{ href: "javascript:void(0)" } toggle
-      %li 
-        %a{ href: "http://mkvd.net" } 
+      %li.card-panel
+        %a{ href: "http://mkvd.net" }
           mkvd.net
         %a.right{ href: "javascript:void(0)" } toggle
-       
