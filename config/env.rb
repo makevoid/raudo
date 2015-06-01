@@ -10,7 +10,14 @@ ALLOWED_USERS = [
 
 CONFIG = {}
 
-auth = File.read(File.expand_path "~/.google_auth")
+server_username = `whoami`.strip
+gauth_config_path = if server_username == "45kb"
+  "#{PATH}/.google_auth"
+else
+  "~/.google_auth"
+end
+
+auth = File.read(File.expand_path gauth_config_path)
 identifier, secret = auth.split("|").map(&:strip)
 
 puts identifier
