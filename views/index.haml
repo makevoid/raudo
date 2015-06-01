@@ -1,21 +1,12 @@
 %h1
 
 %section.main
+  =# haml :apps, locals: { apps: apps }
 
-  %section.apps
-    %h1 App
-    -# - App.all.each do |app|
-    -#   %section= app.name
-
-  %section.machines
-    %h1 Machines
+  =# haml :machines, locals: { machines: machines }
 
 
 
-%nav
-  %a Apps
-  %a Machines
-  %a Domains
 
 .right
   %p You are logged in as #{current_user}!

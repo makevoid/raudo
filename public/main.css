@@ -1,7 +1,6 @@
-.right {
-  float: right;
-}
-
-.clear {
-  clear: both;
+/*Utils*/
+.separator20vh{
+  min-height: 150px;
+  height:20vh;
+  min-width:100%;
 }
