@@ -8,8 +8,16 @@
 }
 
 
+.hidden {
+  display: none;
+}
+
 .right {
   float: right;
+}
+
+.clear {
+  clear: both;
 }
 
 section {
@@ -22,4 +30,6 @@ ul {
 
 li {
   margin-bottom: 1%;
+  background: rgba(190, 190, 190, 0.7);
+  padding: 1%;
 }
