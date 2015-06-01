@@ -1,17 +1,17 @@
-%div.row
-  %h1 Apps 
+.row
+  %h1 Apps
   .nav
     %a{ href: "/apps" } Installed
     |
     %a{ href: "/apps_definitions" } Definitions (todo)
   .separator30
-  
+
   %section
     %a.right{ href: "javascript:void(0)" } Add app [+]
 
     %ul
       %li
-        %a{ href: "http://bitnfc.org" } 
+        %a{ href: "http://bitnfc.org" }
           BitNFC
         %section.hidden.tasks
           Active tasks:
@@ -19,18 +19,18 @@
             %li deploy
             %li reinitialize db
         %a.right{ href: "javascript:void(0)" } toggle
-      %li 
-        %a{ href: "http://dogenfc.com" } 
+      %li
+        %a{ href: "http://dogenfc.com" }
           DogeNFC
         %a.right{ href: "javascript:void(0)" } toggle
-      %li 
-        %a{ href: "http://mkvd.net" } 
+      %li
+        %a{ href: "http://mkvd.net" }
           DogeNFC
         %a.right{ href: "javascript:void(0)" } toggle
-       
-       
-       
 
-      
+
+
+
+
   -# - App.all.each do |app|
   -#   - %section= app.name
