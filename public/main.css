@@ -1,20 +1,20 @@
 /*Settings*/
 /*Media*/
 .logo{
-  font-family: Montserrat ;
-  letter-spacing:-0.5px;
+	font-family: 'Montserrat';
+	letter-spacing:-0.5px;
 }
 /*Utils*/
 .separator5{
-  min-height: 5px;
-  min-width:100%;
+	min-height: 5px;
+	min-width:100%;
 }
 .separator15{
-  min-height: 15px;
-  min-width:100%;
+	min-height: 15px;
+	min-width:100%;
 }
 .separator20vh{
-  min-height: 150px;
-  height:20vh;
-  min-width:100%;
+	min-height: 150px;
+	height:20vh;
+	min-width:100%;
 }
