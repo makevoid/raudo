@@ -2,4 +2,4 @@
 .DS_Store
 tmp/restart.txt
 .bower_components
-public/.bower_components
+public/bower_components
