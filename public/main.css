@@ -1,35 +1,19 @@
 /*Settings*/
-
+body{
+  font-family: Montserrat;
+  letter-spacing:-0.5px;
+}
 /*Utils*/
+.separator5{
+  min-height: 5px;
+  min-width:100%;
+}
+.separator15{
+  min-height: 15px;
+  min-width:100%;
+}
 .separator20vh{
   min-height: 150px;
   height:20vh;
   min-width:100%;
-}
-
-
-.hidden {
-  display: none;
-}
-
-.right {
-  float: right;
-}
-
-.clear {
-  clear: both;
-}
-
-section {
-  margin: 0 1%;
-}
-
-ul {
-  margin: 0 1%;
-}
-
-li {
-  margin-bottom: 1%;
-  background: rgba(190, 190, 190, 0.7);
-  padding: 1%;
 }

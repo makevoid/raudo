@@ -2,49 +2,10 @@
   %head
     %meta{ charset: "utf-8 "}
     %title MKDeploy
-    %link{ href: "bower_components/materialize/dist/css/materialize.min.css", rel:"stylesheet", type: "text/css" }
-    %link{ href: "bower_components/fontawesome/css/font-awesome.min.css", rel:"stylesheet", type: "text/css" }
-    %link{ href: "main.css", rel:"stylesheet", type: "text/css" }
-    
+    %link{ rel:"stylesheet", href:"bower_components/materialize/dist/css/materialize.min.css", type:"text/css" }
+    %link{ rel:"stylesheet", href: "bower_components/fontawesome/css/font-awesome.min.css", type: "text/css" }
+    %link{ rel:"stylesheet", href:"http://fonts.googleapis.com/css?family=Montserrat:400,700"}
+    %link{ rel:"stylesheet", href:"main.css", type:"text/css" }
   %body.blue.darken-2
-    %nav
-      %a{ href: "/apps" }     Apps
-      %a{ href: "/machines" } Machines
-      %a{ href: "/domains" }  Domains
     %section.content
       = yield
-      
-      
-    :javascript
-    
-      var filter = function(nodes, fn) {
-        return Array.prototype.filter.call(nodes, fn);
-      }
-
-      var siblings = function(node) {
-        return filter(node.parentNode.children, function (child) { return child !== node; });
-      }
-
-      var toggle = function(node, className) {
-        node.classList.toggle(className);
-      }
-
-      var onToggle = function(evt){
-        var sibling = siblings( evt.currentTarget )[0]
-        toggle(sibling, "hidden")
-      }
-      
-      
-      // main
-      
-      document.addEventListener("DOMContentLoaded", function(event) {
-        // togglers
-        
-        var toggles = document.querySelectorAll(".toggler")
-
-        var arr = []
-        arr.forEach.call(toggles, function(toggle){
-          toggle.addEventListener("click", onToggle)
-        })
-      })
-      
