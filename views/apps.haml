@@ -1,6 +1,6 @@
 %div.row
   %h1 Apps 
-  %h5 \(Installed)
+  %h5 (Installed)
   
   %section
     %a.right{ href: "javascript:void(0)" } Add app [+]
@@ -9,11 +9,11 @@
       %li
         %a{ href: "http://bitnfc.org" } 
           BitNFC
-        .hidden.tasks
+        %section.hidden.tasks
           Active tasks:
           %ul
-            %li app1
-            %li app2
+            %li deploy
+            %li reinitialize db
         %a.right{ href: "javascript:void(0)" } toggle
       %li 
         %a{ href: "http://dogenfc.com" } 

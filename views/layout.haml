@@ -13,3 +13,38 @@
       %a{ href: "/domains" }  Domains
     %section.content
       = yield
+      
+      
+    :javascript
+    
+      var filter = function(nodes, fn) {
+        return Array.prototype.filter.call(nodes, fn);
+      }
+
+      var siblings = function(node) {
+        return filter(node.parentNode.children, function (child) { return child !== node; });
+      }
+
+      var toggle = function(node, className) {
+        node.classList.toggle(className);
+      }
+
+      var onToggle = function(evt){
+        var sibling = siblings( evt.currentTarget )[0]
+        toggle(sibling, "hidden")
+      }
+      
+      
+      // main
+      
+      document.addEventListener("DOMContentLoaded", function(event) {
+        // togglers
+        
+        var toggles = document.querySelectorAll(".toggle")
+
+        var arr = []
+        arr.forEach.call(toggles, function(toggle){
+          toggle.addEventListener("click", onToggle)
+        })
+      })
+      

@@ -1,12 +1,25 @@
 /*Settings*/
-body{
-  background-image:url('http://i.imgur.com/gq1nGld.png');
-  background-repeat:no-repeat;
-  background-position:top right;
-}
+
 /*Utils*/
 .separator20vh{
   min-height: 150px;
   height:20vh;
   min-width:100%;
+}
+
+
+.right {
+  float: right;
+}
+
+section {
+  margin: 0 1%;
+}
+
+ul {
+  margin: 0 1%;
+}
+
+li {
+  margin-bottom: 1%;
 }
