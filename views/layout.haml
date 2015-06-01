@@ -8,10 +8,17 @@
     %link{ rel:"stylesheet", href:"main.css", type:"text/css" }
   %body.blue.darken-2
 
-    %nav
-      %a{ href: "/apps" }     Apps
-      %a{ href: "/machines" } Machines
-      %a{ href: "/domains" }  Domains
+    %nav.blue.darken-2
+      %div.nav-wrapper
+        %a.brand-logo.navbar-logo
+          &nbsp;Raudo
+        %ul.right.hide-on-med-and-down
+          %li
+            %a{ href: "/apps" }     Apps
+          %li
+            %a{ href: "/machines" } Machines
+          %li
+            %a{ href: "/domains" }  Domains
 
     %section.content
       = yield

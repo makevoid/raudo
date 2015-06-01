@@ -1,8 +1,18 @@
 /*Settings*/
+body{
+	letter-spacing: 0.5px;
+}
 /*Media*/
+.navbar-logo{
+	font-family: 'Montserrat';
+}
 .logo{
 	font-family: 'Montserrat';
 	letter-spacing:-0.5px;
+	line-height: 40px;
+}
+.logo img{
+	margin-right:-40px;
 }
 /*Utils*/
 .separator5{
@@ -18,7 +28,10 @@
 	height:20vh;
 	min-width:100%;
 }
-
-.tagline {
-	font-size: 0.6em;
+.v-middle{
+	vertical-align: middle;
+}
+/*fonts*/
+.font-lighter{
+	font-weight: lighter;
 }
