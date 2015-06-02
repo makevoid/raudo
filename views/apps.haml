@@ -1,37 +1,40 @@
-.row
-  %h1 Apps
-  .nav
-    %a{ href: "/apps" } Installed
-    |
+.container
+  .separator15
+  %h4.row.blue-text.text-accent-3 Apps
+  .row
+    %a{ href: "/,apps" } Installed
+    %span.grey-text.text-lighten-2 &nbsp;|&nbsp;
     %a{ href: "/apps_definitions" } Definitions (todo)
-  .separator30
-
-  %section
     %a.right{ href: "javascript:void(0)" } Add app [+]
-    .clear
-    
-    %ul
-      %li.card-panel
-        %a{ href: "http://bitnfc.org" }
-          BitNFC
-        %section.hidden.tasks
-          Active tasks:
-          %ul
-            %li deploy
-            %li reinitialize db
-        %a.right{ href: "javascript:void(0)" } toggle
-      %li.card-panel
-        %a{ href: "http://dogenfc.com" }
-          DogeNFC
-        %a.right{ href: "javascript:void(0)" } toggle
-      %li.card-panel
-        %a{ href: "http://mkvd.net" }
-          DogeNFC
-        %a.right{ href: "javascript:void(0)" } toggle
 
-
-
-
+  .row
+    %ul.collapsible.active{:data => {"collapsible" => "accordion"}}
+      %li
+        .collapsible-header
+          %i.mdi-image-filter-drama
+          &nbsp;Doge app
+        .collapsible-body
+          .separator15
+          .col.s12
+            .col.s1
+            .col.s10
+              %b Active tasks
+              %ul
+                %li deploy
+                %li reinitialize db
+              .separator15
+      %li
+        .collapsible-header
+          %i.mdi-image-filter-drama
+          &nbsp; Asd app
+        .collapsible-body
+          %p Lorem ipsum dolor sit amet
+      %li
+        .collapsible-header
+          %i.mdi-image-filter-drama
+          &nbsp;Such app
+        .collapsible-body
+          %p Lorem ipsum dolor sit amet
 
   -# - App.all.each do |app|
   -#   - %section= app.name
