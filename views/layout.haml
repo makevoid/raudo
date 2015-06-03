@@ -4,7 +4,7 @@
     %title Raudo - Deploy your apps easily
     %link{ rel:"stylesheet", href: "bower_components/materialize/dist/css/materialize.min.css", type:"text/css" }
     %link{ rel:"stylesheet", href: "bower_components/fontawesome/css/font-awesome.min.css", type: "text/css" }
-    %link{ rel:"stylesheet", href: "http://fonts.googleapis.com/css?family=Montserrat:400,700"}
+    %link{ rel:"stylesheet", href: "font/montserrat.woff2"}
     %link{ rel:"stylesheet", href: "main.css", type:"text/css" }
   %body{ class: body_class }
 
@@ -49,12 +49,10 @@
 
     %section.content
       = yield
+
     %script{src: "bower_components/jquery/dist/jquery.min.js"}
     %script{src: "bower_components/materialize/dist/js/materialize.min.js"}
-
     :javascript
-
-      //TODO mad pls put it where you desireee
 
       $(document).ready(function () {
 
