@@ -16,13 +16,21 @@
           %img.hide-on-med-and-down{src: 'http://i.imgur.com/gq1nGld.png', width:'80'}
         %a.button-collapse{href: "#", :data => {"activates" => "nav-mobile"}}
           %i.mdi-navigation-menu
-        %ul.right.hide-on-med-and-down
+        %ul.left.hide-on-med-and-down
+          %li
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           %li
             %a{ href: "/apps" }     Apps
           %li
             %a{ href: "/machines" } Machines
           %li
             %a{ href: "/domains" }  Domains
+        %ul.right.hide-on-med-and-down
+          %li
+            %a{ href: "/domains" } {-.-} Logout
         %ul.side-nav#nav-mobile.font-20
           %li
             %a{ href: "/apps" }
@@ -36,6 +44,10 @@
             %a{ href: "/domains" }
               .blue-text.mdi-action-language
                 %span.grey-text.text-darken-2 Domains
+          %li
+            %a{ href: "/domains" }
+              .dark-text.mdi-maps-directions-walk
+                %span.grey-text.text-darken-2 Logout
 
     %section.content
       = yield
