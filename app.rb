@@ -46,6 +46,19 @@ class App < Sinatra::Base
     redirect "/"
   end
 
+  # helpers
+
+  helpers do
+    def nav_link(label)
+      url   = "/#{label.downcase}"
+      klass = "active" if request.path =~ /^#{url}/
+      haml_tag :li, class: klass do
+        haml_tag :a, href: url do
+          haml_concat label
+        end
+      end
+    end
+  end
 
   # main
 

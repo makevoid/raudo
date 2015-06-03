@@ -22,15 +22,13 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          %li
-            %a{ href: "/apps" }     Apps
-          %li
-            %a{ href: "/machines" } Machines
-          %li
-            %a{ href: "/domains" }  Domains
+          - nav_link "Apps"
+          - nav_link "Machines"
+          - nav_link "Domains"
+        
         %ul.right.hide-on-med-and-down
           %li
-            %a{ href: "/domains" } {-.-} Logout
+            %a{ href: "/logout" } Logout
         %ul.side-nav#nav-mobile.font-20
           %li
             %a{ href: "/apps" }
