@@ -1,23 +1,40 @@
-%div.row
-  %h1 Domains
+.container
+  .separator15
+  %h4.row.blue-text.text-accent-3 Domains
+  .row
+    %a{ href: "/,apps" } Installed
+    %span.grey-text.text-lighten-2 &nbsp;|&nbsp;
+    %a{ href: "/apps_definitions" } Definitions (todo)
+    %a.right{ href: "javascript:void(0)" } Add app [+]
 
-  %section
-    %a.right{ href: "javascript:void(0)" } Add domain [+]
-    .clear
+  .row
+    %ul.collapsible.active{:data => {"collapsible" => "accordion"}}
+      %li
+        .collapsible-header
+          %i.mdi-image-filter-drama
+          &nbsp;Doge app
+        .collapsible-body
+          .separator15
+          .col.s12
+            .col.s1
+            .col.s10
+              %b Active tasks
+              %ul
+                %li deploy
+                %li reinitialize db
+              .separator15
+      %li
+        .collapsible-header
+          %i.mdi-image-filter-drama
+          &nbsp; Asd app
+        .collapsible-body
+          %p Lorem ipsum dolor sit amet
+      %li
+        .collapsible-header
+          %i.mdi-image-filter-drama
+          &nbsp;Such app
+        .collapsible-body
+          %p Lorem ipsum dolor sit amet
 
-    %ul
-      %li.card-panel
-        %a{ href: "http://720kb.net" }
-          720kb.net
-        %section.hidden.apps
-          Installed apps:
-          %ul
-            %li app1
-            %li app2
-          =# haml :apps, locals: { apps: apps }
-
-        %a.right{ href: "javascript:void(0)" } toggle
-      %li.card-panel
-        %a{ href: "http://mkvd.net" }
-          mkvd.net
-        %a.right{ href: "javascript:void(0)" } toggle
+  -# - App.all.each do |app|
+  -#   - %section= app.name
