@@ -2,6 +2,8 @@ require_relative "./config/env"
 
 class App < Sinatra::Base
 
+  include Voidtools::Sinatra::ViewHelpers
+
   # oauth
 
   enable :sessions
@@ -12,7 +14,7 @@ class App < Sinatra::Base
   end
 
   UNPROTECTED_URLS = ["/style.css", "style.css"]
-  
+
   before do
     if request.env['omniauth.auth'].nil? && !logged_in? && !(UNPROTECTED_URLS.include? request.path)
       halt haml(:log_in)
@@ -45,24 +47,24 @@ class App < Sinatra::Base
   get "/" do
     haml :index
   end
-  
+
   get "/apps" do
     haml :apps
   end
-  
+
   get "/domains" do
     haml :domains
   end
-  
+
   get "/machines" do
     haml :machines
   end
 
   # style TODO change in prod
-  
+
   get '/style.css' do
     content_type "text/css"
     File.read 'bower_components/materialize/dist/css/materialize.min.css'
   end
-  
+
 end
