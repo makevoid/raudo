@@ -40,5 +40,6 @@
         .collapsible-body
           %p Lorem ipsum dolor sit amet
 
-  -# - App.all.each do |app|
-  -#   - %section= app.name
+
+  - AppInstance.all.each do |app|
+    %section= app.name

@@ -39,6 +39,7 @@ GEM
       eventmachine (~> 1.0)
       rack (~> 1.0)
     tilt (2.0.1)
+    transproc (0.2.2)
     voidtools (0.3.1)
 
 PLATFORMS
@@ -50,4 +51,5 @@ DEPENDENCIES
   omniauth-oauth2
   sinatra
   thin
+  transproc
   voidtools

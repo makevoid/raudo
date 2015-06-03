@@ -19,6 +19,9 @@ body.home{
 	margin-right:-40px;
 }
 /*Utils*/
+.hidden {
+	display: none;
+}
 .separator5{
 	min-height: 5px;
 	min-width:100%;

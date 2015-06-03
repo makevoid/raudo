@@ -1,7 +1,9 @@
 require 'bundler/setup'
 Bundler.require :default
-PATH = File.expand_path "../../", __FILE__
-env = ENV["RACK_ENV"]
+
+path    = File.expand_path "../../", __FILE__
+PATH    = path
+env     = ENV["RACK_ENV"]
 APP_ENV = env
 
 ALLOWED_USERS = [
@@ -27,6 +29,17 @@ puts secret
 
 CONFIG[:google_oauth_identifier]  = identifier
 CONFIG[:google_oauth_secret]      = secret
+
+
+require "#{path}/lib/execution"
+require "#{path}/lib/remote_execution"
+
+Dir["#{path}/models/*.rb"].each do |app|
+  require app
+end
+
+# aliases
+AppInst = AppInstance
 
 
 # url: https://console.developers.google.com
