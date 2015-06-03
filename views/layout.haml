@@ -2,10 +2,10 @@
   %head
     %meta{ charset: "utf-8 "}
     %title Raudo - Deploy your apps easily
-    %link{ rel:"stylesheet", href:"bower_components/materialize/dist/css/materialize.min.css", type:"text/css" }
+    %link{ rel:"stylesheet", href: "bower_components/materialize/dist/css/materialize.min.css", type:"text/css" }
     %link{ rel:"stylesheet", href: "bower_components/fontawesome/css/font-awesome.min.css", type: "text/css" }
-    %link{ rel:"stylesheet", href:"http://fonts.googleapis.com/css?family=Montserrat:400,700"}
-    %link{ rel:"stylesheet", href:"main.css", type:"text/css" }
+    %link{ rel:"stylesheet", href: "http://fonts.googleapis.com/css?family=Montserrat:400,700"}
+    %link{ rel:"stylesheet", href: "main.css", type:"text/css" }
   %body{ class: body_class }
 
     %nav.blue.darken-2
@@ -13,7 +13,7 @@
         %a.brand-logo.navbar-logo{href: "/"}
           &nbsp;
           Raudo
-          %img.hide-on-med-and-down{src: 'http://i.imgur.com/gq1nGld.png', width:'80'}
+          %img.hide-on-med-and-down{src: '/img/raudo_app_logo.png', width:'80'}
         %a.button-collapse{href: "#", :data => {"activates" => "nav-mobile"}}
           %i.mdi-navigation-menu
         %ul.left.hide-on-med-and-down
@@ -25,7 +25,7 @@
           - nav_link "Apps"
           - nav_link "Machines"
           - nav_link "Domains"
-        
+
         %ul.right.hide-on-med-and-down
           %li
             %a{ href: "/logout" } Logout
