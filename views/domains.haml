@@ -2,39 +2,30 @@
   .separator15
   %h4.row.blue-text Domains
   .row
-    %a{ href: "/,apps" } Installed
-    %span.grey-text.text-lighten-2 &nbsp;|&nbsp;
-    %a{ href: "/apps_definitions" } Definitions (todo)
     %a.right{ href: "javascript:void(0)" } Add app [+]
 
   .row
-    %ul.collapsible.active{:data => {"collapsible" => "accordion"}}
+    %ul.collapsible.active{ data: { collapsible: "accordion" } }
       %li
         .collapsible-header
           %i.mdi-image-filter-drama
-          &nbsp;Doge app
+          &nbsp;mkvd.net
         .collapsible-body
           .separator15
           .col.s12
             .col.s1
             .col.s10
-              %b Active tasks
+              %b Apps
               %ul
-                %li deploy
-                %li reinitialize db
+                %li antani
+                %li sblinda
               .separator15
       %li
         .collapsible-header
           %i.mdi-image-filter-drama
-          &nbsp; Asd app
+          &nbsp;720kb.net
         .collapsible-body
-          %p Lorem ipsum dolor sit amet
-      %li
-        .collapsible-header
-          %i.mdi-image-filter-drama
-          &nbsp;Such app
-        .collapsible-body
-          %p Lorem ipsum dolor sit amet
+          %p Apps
 
   -# - App.all.each do |app|
   -#   - %section= app.name
