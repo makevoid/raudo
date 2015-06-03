@@ -6,13 +6,9 @@ body.home{
 	background-color: #1976D2;
 }
 /*Media*/
-.navbar-logo{
-	font-family: 'Montserrat';
-}
-.logo{
+.navbar-logo,.logo{
 	font-family: 'Montserrat';
 	letter-spacing:-0.5px;
-	line-height: 40px;
 }
 .logo img{
 	margin-right:-40px;
