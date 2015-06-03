@@ -1,6 +1,8 @@
 require 'bundler/setup'
 Bundler.require :default
 PATH = File.expand_path "../../", __FILE__
+env = ENV["RACK_ENV"]
+APP_ENV = env
 
 ALLOWED_USERS = [
   "makevoid@gmail.com",

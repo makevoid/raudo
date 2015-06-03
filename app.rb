@@ -15,9 +15,14 @@ class App < Sinatra::Base
 
   UNPROTECTED_URLS = ["/style.css", "style.css"]
 
+
   before do
-    if request.env['omniauth.auth'].nil? && !logged_in? && !(UNPROTECTED_URLS.include? request.path)
-      halt haml(:log_in)
+    if APP_ENV != "development"
+      if request.env['omniauth.auth'].nil? && !logged_in? && !(UNPROTECTED_URLS.include? request.path)
+        halt haml(:log_in)
+      end
+    else
+      halt haml(:log_in) if params[:login]
     end
   end
 
