@@ -78,6 +78,13 @@ class App < Sinatra::Base
     haml :machines
   end
 
+  # apps
+
+  post "/apps/:id/actions" do
+    "sei grande ciccio"
+  end
+
+
   # style TODO change in prod
 
   get '/style.css' do

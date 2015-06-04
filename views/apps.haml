@@ -67,25 +67,23 @@
                   position: relative;
                 }
 
-              .relative
-                .separator30
-                .separator30
-                .progress
+              .mk_progress.hidden
+                .progress_bar
+                .progress_text
 
               %ul.inset
                 - for task in tasks.main
-                  %li
-                    .btn.left= task
+                  %li.btn.action.left{ data: { action_name: task } }
+                    = task
                 .clear
-
                 .separator30
 
                 %h5 DB
                 %ul
                   - for task_db in tasks.sub.db
-                    %li.btn.left= task_db
+                    %li.btn.action.left{ data: { action_name: task_db } }
+                      = task_db
                   .clear
-
               .separator30
 
 
@@ -108,4 +106,39 @@
   -# %section= app.name
 
 :javascript
-  .container
+  var progress      = document.querySelector(".container .mk_progress")
+  var progress_bar  = document.querySelector(".container .mk_progress .progress_bar")
+  var progress_text = document.querySelector(".container .mk_progress .progress_text")
+  var onAction = function(evt) {
+    var action = evt.target.dataset.actionName
+    progress.classList.remove("hidden")
+    progress_bar.style.top = progress.offsetTop
+    progress_text.innerHTML = "executing: <span>"+action+"</span> ..."
+
+    var app = { id: 1 };
+    actionRequest(app)
+  }
+  var buttons = document.querySelectorAll(".container .btn.action")
+  var arr = []
+  arr.forEach.call(buttons, function(button){
+    button.addEventListener("click", onAction)
+  })
+
+  var actionRequest = function(app){
+    var oReq = new XMLHttpRequest();
+    oReq.onload = reqListener;
+    var body = { name: "restart" };
+    oReq.open("post", "/apps/"+app.id+"/actions", body);
+    oReq.send();
+  }
+
+
+  // xhr
+  function reqListener () {
+    console.log(this.responseText);
+
+    setTimeout(function() {
+      console.log("deee")
+      progress.classList.add("hidden")
+    }, 2000)
+  }
