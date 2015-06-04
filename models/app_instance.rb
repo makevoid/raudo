@@ -12,7 +12,7 @@ APP_INSTS = [
 Transproc.register :to_json, -> v { JSON.dump v }
 
 class AppInstance
-  extend RemoteExecution
+  include RemoteExecution
 
   require 'transproc/all'
   include Transproc::Helper
@@ -25,7 +25,7 @@ class AppInstance
   end
 
   def all(server)
-    out = ssh "ls", server: server
+    out = ssh "ls /www", server: server
     namize split out
   end
 
@@ -35,17 +35,16 @@ class AppInstance
 
   private
 
-  def self.namize(array)
-    proc = t(:map_array, -> value { { name: value } })
-    list = proc.(array)
-
-    list = Hash[*list]
-
-    proc = t(:map_array, -> value { { name: value } })
-    t(proc).(list)
+  def namize(array)
+    t_hash_name = -> value do
+      { name: value }
+    end
+    t_mash = -> hash { Hashie::Mash.new hash }
+    proc = t(:map_array, t_hash_name) >> t(:map_array, t_mash)
+    proc.(array)
   end
 
-  def self.split(list)
+  def split(list)
     list.split "\n"
   end
 
