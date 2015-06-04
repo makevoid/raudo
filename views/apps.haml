@@ -1,32 +1,96 @@
-.container
-  .separator15
-  %h4.row.blue-text Apps
-  .row
-    %a{ href: "/apps" } Installed
-    |
-    %a{ href: "#/apps_definitions" } Definitions
-    %a.right{ href: "javascript:void(0)" } Add app [+]
+%h4.row.blue-text Apps
+.row
+  %a{ href: "/apps" } Installed
+  |
+  %a{ href: "#/apps_definitions" } Definitions
+  %a.right{ href: "javascript:void(0)" } Add app [+]
 
 
-  .row.hidden
-    %h3 New app
+.row.hidden
+  %h3 New app
 
-  .row
-    %ul.collapsible.active{ data: { collapsible: "accordion" } }
+.row
+  %ul.collapsible.active{ data: { collapsible: "accordion" } }
+    - AppInstance.all.each do |app|
       %li
         .collapsible-header
           %i.mdi-image-filter-drama
-          &nbsp;Domains
+          &nbsp;#{app.name}
         .collapsible-body
           .separator15
           .col.s12
             .col.s1
             .col.s10
-              %b Active tasks
-              %ul
-                %li deploy
-                %li reinitialize db
-              .separator15
+              :ruby
+                # Task.all
+                # Task.sub.all
+                H = Hashie::Mash
+
+                tasks = H.new(
+                  main: %w(
+                    deploy
+                    restart
+                    setup
+                  ),
+                  sub:  H.new(
+                    db: %w(
+                      create
+                      migrate
+                    ),
+                  ))
+
+                # +
+                # db_create
+                # db_migrate
+
+                # app_tasks > submenu
+
+              :css
+                .left {
+                  float: left;
+                }
+                .clear {
+                  clear: both;
+                }
+
+              %h4 Actions
+              -#   | Tasks
+
+              :css
+                .btn.left {
+                  margin: 5px;
+                }
+                .inset {
+                  margin-left: 15px;
+                }
+                .relative {
+                  position: relative;
+                }
+
+              .relative
+                .separator30
+                .separator30
+                .progress
+
+              %ul.inset
+                - for task in tasks.main
+                  %li
+                    .btn.left= task
+                .clear
+
+                .separator30
+
+                %h5 DB
+                %ul
+                  - for task_db in tasks.sub.db
+                    %li.btn.left= task_db
+                  .clear
+
+              .separator30
+
+
+
+    /
       %li
         .collapsible-header
           %i.mdi-image-filter-drama
@@ -41,5 +105,7 @@
           %p Lorem ipsum dolor sit amet
 
 
-  - AppInstance.all.each do |app|
-    %section= app.name
+  -# %section= app.name
+
+:javascript
+  .container

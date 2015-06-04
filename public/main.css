@@ -46,3 +46,28 @@ body.home{
 .font-lighter{
 	font-weight: lighter;
 }
+/*progress bar*/
+.progress {
+	text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+	height: 40px;
+	width: 4000px;
+	-webkit-transform: translate3d(-3000px, 0, 0);
+  -webkit-animation: indeterminate 0.39s linear infinite;
+	background: repeating-linear-gradient(
+	  45deg,
+	  #1976D2, /* blue.darken-2 */
+	  #1976D2 10px,
+	  #2196F3 10px, /* blue */
+	  #2196F3 20px
+	);
+}
+@-webkit-keyframes indeterminate {
+  100% {
+    -webkit-transform: translate3d(3000px, 0, 0);
+  }
+}

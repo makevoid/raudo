@@ -1,31 +1,29 @@
-.container
-  .separator15
-  %h4.row.blue-text Domains
-  .row
-    %a.right{ href: "javascript:void(0)" } Add app [+]
+%h4.row.blue-text Domains
+.row
+  %a.right{ href: "javascript:void(0)" } Add app [+]
 
-  .row
-    %ul.collapsible.active{ data: { collapsible: "accordion" } }
-      %li
-        .collapsible-header
-          %i.mdi-image-filter-drama
-          &nbsp;mkvd.net
-        .collapsible-body
-          .separator15
-          .col.s12
-            .col.s1
-            .col.s10
-              %b Apps
-              %ul
-                %li antani
-                %li sblinda
-              .separator15
-      %li
-        .collapsible-header
-          %i.mdi-image-filter-drama
-          &nbsp;720kb.net
-        .collapsible-body
-          %p Apps
+.row
+  %ul.collapsible.active{ data: { collapsible: "accordion" } }
+    %li
+      .collapsible-header
+        %i.mdi-image-filter-drama
+        &nbsp;mkvd.net
+      .collapsible-body
+        .separator15
+        .col.s12
+          .col.s1
+          .col.s10
+            %b Apps
+            %ul
+              %li antani
+              %li sblinda
+            .separator15
+    %li
+      .collapsible-header
+        %i.mdi-image-filter-drama
+        &nbsp;720kb.net
+      .collapsible-body
+        %p Apps
 
-  -# - App.all.each do |app|
-  -#   - %section= app.name
+-# - App.all.each do |app|
+-#   - %section= app.name

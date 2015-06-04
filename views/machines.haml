@@ -1,37 +1,35 @@
-.container
-  .separator15
-  %h4.row.blue-text Machines
-  .row
-    %a.right{ href: "javascript:void(0)" } Add app [+]
+%h4.row.blue-text Machines
+.row
+  %a.right{ href: "javascript:void(0)" } Add app [+]
 
-  .row
-    %ul.collapsible.active{ data: { collapsible: "accordion" } }
-      %li
-        .collapsible-header
-          %i.mdi-image-filter-drama
-          &nbsp;720kb.net
-        .collapsible-body
-          .separator15
-          .col.s12
-            .col.s1
-            .col.s10
-              %b Installed apps
-              %ul
-                %li deploy
-                %li teachrtc
-              .separator15
-      %li
-        .collapsible-header
-          %i.mdi-image-filter-drama
-          &nbsp; mkvd.net
-        .collapsible-body
-          %p Lorem ipsum dolor sit amet
-      %li
-        .collapsible-header
-          %i.mdi-image-filter-drama
-          &nbsp;deploy.mkvd.net
-        .collapsible-body
-          %p Lorem ipsum dolor sit amet
+.row
+  %ul.collapsible.active{ data: { collapsible: "accordion" } }
+    %li
+      .collapsible-header
+        %i.mdi-image-filter-drama
+        &nbsp;720kb.net
+      .collapsible-body
+        .separator15
+        .col.s12
+          .col.s1
+          .col.s10
+            %b Installed apps
+            %ul
+              %li deploy
+              %li teachrtc
+            .separator15
+    %li
+      .collapsible-header
+        %i.mdi-image-filter-drama
+        &nbsp; mkvd.net
+      .collapsible-body
+        %p Lorem ipsum dolor sit amet
+    %li
+      .collapsible-header
+        %i.mdi-image-filter-drama
+        &nbsp;deploy.mkvd.net
+      .collapsible-body
+        %p Lorem ipsum dolor sit amet
 
-  -# - App.all.each do |app|
-  -#   - %section= app.name
+-# - App.all.each do |app|
+-#   - %section= app.name
