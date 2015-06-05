@@ -1,6 +1,11 @@
+# usage:
+#
+# Action.new.setup
+
 class Action
   include RemoteExecution
 
+  DIR_APPS   = "/www"
   DIR_APP    = "/www/%s"        # usage: APP_DIR % "raudo"
   DIR_PUBLIC = "/www/%s/public" # usage: DIR_PUBLIC % "antani"
 
@@ -15,12 +20,20 @@ class Action
 
   def restart
     cmd = "touch tmp/restart"
-    ssh cmd, dir: DIR_APP
+    ssh cmd, dir: DIR_APPS
   end
 
-  def setup
-    ssh "mkdir -p #{DIR_APP}"
-    ssh "git clone https://github.com/makevoid/#{repo}", dir: DIR_APP
+  def setup(repo="mkdeploy")
+    ssh "mkdir -p #{DIR_APPS}", server: server
+    ssh "git clone https://github.com/makevoid/#{repo}", dir: DIR_APPS, server: server
+  end
+
+  ##
+
+  attr_reader :server
+
+  def initialize
+    @server = "makevoid@localhost"
   end
 
   # include DBActionPlugin
