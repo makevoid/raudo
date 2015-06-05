@@ -83,7 +83,6 @@ class App < Sinatra::Base
   post /\/apps\/(\w+)\/actions/ do |app_name|
     content_type :json
     app = { name: app_name }
-    raise app.inspect
     app.to_json
   end
 
