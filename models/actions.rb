@@ -5,21 +5,22 @@ class Action
   DIR_PUBLIC = "/www/%s/public" # usage: DIR_PUBLIC % "antani"
 
   def deploy
-    # cmd_cd    = "cd /path/#{dir}"
-    # cmd_main  = "asdasd #{}"
-    # cmd       = "#{cmd_cd};{cmd_main}"
-    # ssh cmd
-    # cd dir
+    branch = "master"
+    # branch = split repo, :branch # repo = "makevoid/mkdeploy:master" <|> "username/repo:branch"
+    ssh "git pull origin #{branch}"
+
+    restart
+    puts "deploy finished"
   end
 
   def restart
-    dir = "/www"
     cmd = "touch tmp/restart"
-    ssh cmd, dir: dir
+    ssh cmd, dir: DIR_APP
   end
 
   def setup
-
+    ssh "mkdir -p #{DIR_APP}"
+    ssh "git clone https://github.com/makevoid/#{repo}", dir: DIR_APP
   end
 
   # include DBActionPlugin
@@ -37,6 +38,19 @@ class Action
   end
 
   def db_migrate
+
+  end
+
+  # include ScreenshotPlugin
+
+  def screen_shot
+    # if OS.linux?
+      # https://github.com/leonid-shevtsov/headless
+    # else
+      # response :OK, "", {}
+  end
+
+  def screen_capture_window
 
   end
 
