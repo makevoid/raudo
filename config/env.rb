@@ -14,8 +14,8 @@ ALLOWED_USERS = [
 
 CONFIG = {}
 
-server_username = `whoami`.strip
-gauth_config_path = if server_username == "45kb"
+DEV_USERNAME = `whoami`.strip
+gauth_config_path = if DEV_USERNAME == "45kb"
   "#{PATH}/.google_auth"
 else
   "~/.google_auth"

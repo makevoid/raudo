@@ -17,15 +17,24 @@ class AppInstance
   require 'transproc/all'
   include Transproc::Helper
 
+  WWW_PATH = "/www"
+
   # DEFAULT_HOST = "root@makevoid.com"
   DEFAULT_HOST = "makevoid@localhost"
+
+  if defined? DEV_USERNAME
+    if DEV_USERNAME == "45kb"
+      DEFAULT_HOST = "45kb@localhost"
+      WWW_PATH     = "#{PATH}/www"
+    end
+  end
 
   def self.all(server=DEFAULT_HOST)
     new.all(server)
   end
 
   def all(server)
-    out = ssh "ls /www", server: server
+    out = ssh "ls #{WWW_PATH}", server: server
     namize split out
   end
 
