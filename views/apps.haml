@@ -84,6 +84,12 @@
                     %li.btn.action.left{ data: { action_name: task_db } }
                       = task_db
                   .clear
+
+                .separator30
+                .separator30
+                .btn Settings
+                .separator15
+                %input{ name: "repo", placeholder: "username/repo (github)", type: "text" }
               .separator30
 
 
@@ -106,6 +112,8 @@
   -# %section= app.name
 
 :javascript
+
+
   var progress      = document.querySelector(".container .mk_progress")
   var progress_bar  = document.querySelector(".container .mk_progress .progress_bar")
   var progress_text = document.querySelector(".container .mk_progress .progress_text")
@@ -115,7 +123,7 @@
     progress_bar.style.top = progress.offsetTop
     progress_text.innerHTML = "executing: <span>"+action+"</span> ..."
 
-    var app = { id: 1 };
+    var app = { name: "mkdeploy" };
     actionRequest(app)
   }
   var buttons = document.querySelectorAll(".container .btn.action")
@@ -124,21 +132,42 @@
     button.addEventListener("click", onAction)
   })
 
+
+  // xhr
   var actionRequest = function(app){
-    var oReq = new XMLHttpRequest();
-    oReq.onload = reqListener;
-    var body = { name: "restart" };
-    oReq.open("post", "/apps/"+app.id+"/actions", body);
+    var oReq = new XMLHttpRequest()
+    oReq.onload = reqListener
+    var body = { name: "restart" }
+    oReq.open("post", "/apps/"+app.id+"/actions", body)
     oReq.send();
   }
 
-
-  // xhr
   function reqListener () {
-    console.log(this.responseText);
-
+    console.log("got: "+this.responseText)
     setTimeout(function() {
-      console.log("deee")
+      console.log("ended: "+this.responseText)
       progress.classList.add("hidden")
     }, 2000)
+  }
+
+  // router
+  var route = /\/apps\/([\w_]+)\/actions/
+  if (location.pathname.match(route)) {
+    var match = route.exec(location.pathname)[1]
+    var action = document.querySelector(".btn[data-action-name='"+match+"']")
+
+
+    var elements = document.querySelectorAll(".hidden")
+    var arr = []
+    arr.forEach.call(elements, function(elem){
+      elem.classList.remove("hidden")
+      elem.dispatchEvent("click")
+
+      var evt = document.createEvent("MouseEvents");
+      evt.initMouseEvent("click", true, true, window, 1, 0, 0, 0, 0,
+          false, false, false, false, 0, null);
+      elem.dispatchEvent(evt);
+    })
+
+    // action.trigger("click")
   }

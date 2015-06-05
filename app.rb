@@ -80,10 +80,16 @@ class App < Sinatra::Base
 
   # apps
 
-  post "/apps/:id/actions" do
-    "sei grande ciccio"
+  post /\/apps\/(\w+)\/actions/ do |app_name|
+    content_type :json
+    app = { name: app_name }
+    raise app.inspect
+    app.to_json
   end
 
+  get "/apps/:id/actions" do
+    haml :apps
+  end
 
   # style TODO change in prod
 

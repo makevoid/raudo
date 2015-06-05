@@ -2,10 +2,10 @@
   %head
     %meta{ charset: "utf-8 "}
     %title Raudo - Deploy your apps easily
-    %link{ rel:"stylesheet", href: "bower_components/materialize/dist/css/materialize.min.css", type:"text/css" }
-    %link{ rel:"stylesheet", href: "bower_components/fontawesome/css/font-awesome.min.css", type: "text/css" }
-    %link{ rel:"stylesheet", href: "font/montserrat.woff2"}
-    %link{ rel:"stylesheet", href: "main.css", type:"text/css" }
+    %link{ rel:"stylesheet", href: "/bower_components/materialize/dist/css/materialize.min.css", type:"text/css" }
+    %link{ rel:"stylesheet", href: "/bower_components/fontawesome/css/font-awesome.min.css", type: "text/css" }
+    %link{ rel:"stylesheet", href: "/font/montserrat.woff2"}
+    %link{ rel:"stylesheet", href: "/main.css", type:"text/css" }
     %link{ rel:"stylesheet", href: "progress-bar.css", type:"text/css" }
   %body{ class: body_class }
 
@@ -52,41 +52,13 @@
       .separator15
       = yield
 
-    %script{src: "bower_components/jquery/dist/jquery.min.js"}
-    %script{src: "bower_components/materialize/dist/js/materialize.min.js"}
+    %script{src: "/bower_components/jquery/dist/jquery.min.js"}
+    %script{src: "/bower_components/materialize/dist/js/materialize.min.js"}
     :javascript
 
       $(document).ready(function () {
-
         $('.button-collapse').sideNav();
         $('.collapsible').collapsible({
             'accordion': false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
         });
       });
-
-      var filter = function(nodes, fn) {
-        return Array.prototype.filter.call(nodes, fn);
-      }
-      var siblings = function(node) {
-        return filter(node.parentNode.children, function (child) { return child !== node; });
-      }
-      var toggle = function(node, className) {
-        node.classList.toggle(className);
-      }
-      var onToggle = function(evt){
-        var sibling = siblings( evt.currentTarget )[0]
-        toggle(sibling, "hidden")
-      }
-
-
-      // main
-
-      document.addEventListener("DOMContentLoaded", function(event) {
-        // togglers
-
-        var toggles = document.querySelectorAll(".toggler")
-        var arr = []
-        arr.forEach.call(toggles, function(toggle){
-          toggle.addEventListener("click", onToggle)
-        })
-      })
