@@ -18,41 +18,41 @@
           &nbsp;#{app.name}
         .collapsible-body
           .separator15
-          .align-right
-            .col.s11
+          .right
+            .col.s2
               %button.btn.btn-floating.grey
                 %span.mdi-action-settings
-              &nbsp;
-              %span.grey-text.text-lighten-2.font-lighter Settings
+            .hidden
           .container
             .asd
             .col.s12
-              :ruby
-                # Task.all
-                # Task.sub.all
-                H = Hashie::Mash
+              :css
+                ul.row li {
+                  margin-top: 15px
+                }
 
-                tasks = H.new(
-                  main: %w(
-                    deploy
-                    restart
-                    setup
-                  ),
-                  sub:  H.new(
-                    db: %w(
-                      create
-                      migrate
-                    ),
-                  ))
-
-                # +
-                # db_create
-                # db_migrate
-
-                # app_tasks > submenu
+              - tasks = Task.all
 
               %h5 Actions
               -#   | Tasks
+
+              :css
+                .progress {
+                  height: 35px;
+                }
+                .hidden {
+                  display: none;
+                }
+
+              %input{ name: "repo", placeholder: "username/repo (github)", type: "text" }
+
+              .width-full.progress.progress-info.progress-striped.active.mk_progress.progress_bar.hidden
+                .bar.width-full
+                  .progress_text
+
+              .separator30
+              .separator30
+              .separator30
 
               %ul.row.inset
                 - for task in tasks.main
@@ -61,6 +61,7 @@
                       = task
                 .clear
                 .separator30
+              .separator15
 
               %h5 DB
               %ul.row
@@ -71,87 +72,15 @@
                 .clear
 
                 .separator30
-                .separator15
-              %input{ name: "repo", placeholder: "username/repo (github)", type: "text" }
-              .separator30
-              .width-full.progress.progress-info.progress-striped.active.mk_progress.progress_bar.hidden
-                .bar.width-full
-                  .progress_text
+                .separator30
 
-    /
-      %li
-        .collapsible-header
-          %i.mdi-image-filter-drama
-          &nbsp; Asd app
-        .collapsible-body
-          %p Lorem ipsum dolor sit amet
-      %li
-        .collapsible-header
-          %i.mdi-image-filter-drama
-          &nbsp;Such app
-        .collapsible-body
-          %p Lorem ipsum dolor sit amet
+              %h5 Monitoring
+              %ul.row
+                - for task_monitoring in tasks.sub.monitoring
+                  %li.col.col-45.align-center
+                    %button.btn.blue.action.left{ data: { action_name: task_monitoring } }
+                      = task_monitoring
+                .clear
 
-
-  -# %section= app.name
-
-:javascript
-
-
-  var progress      = document.querySelector(".container .mk_progress")
-  var progress_bar  = document.querySelector(".container .mk_progress .progress_bar")
-  var progress_text = document.querySelector(".container .mk_progress .progress_text")
-  var onAction = function(evt) {
-    var action = evt.target.dataset.actionName
-    progress.classList.remove("hidden")
-    progress_bar.style.top = progress.offsetTop
-    progress_text.innerHTML = "executing: <span>"+action+"</span> ..."
-
-    var app = { name: "mkdeploy" };
-    actionRequest(app)
-  }
-  var buttons = document.querySelectorAll(".container .btn.action")
-  var arr = []
-  arr.forEach.call(buttons, function(button){
-    button.addEventListener("click", onAction)
-  })
-
-
-  // xhr
-  var actionRequest = function(app){
-    var oReq = new XMLHttpRequest()
-    oReq.onload = reqListener
-    var body = { name: "restart" }
-    oReq.open("post", "/apps/"+app.id+"/actions", body)
-    oReq.send();
-  }
-
-  function reqListener () {
-    console.log("got: "+this.responseText)
-    setTimeout(function() {
-      console.log("ended: "+this.responseText)
-      progress.classList.add("hidden")
-    }, 2000)
-  }
-
-  // router
-  var route = /\/apps\/([\w_]+)\/actions/
-  if (location.pathname.match(route)) {
-    var match = route.exec(location.pathname)[1]
-    var action = document.querySelector(".btn[data-action-name='"+match+"']")
-
-
-    var elements = document.querySelectorAll(".hidden")
-    var arr = []
-    arr.forEach.call(elements, function(elem){
-      elem.classList.remove("hidden")
-      elem.dispatchEvent("click")
-
-      var evt = document.createEvent("MouseEvents");
-      evt.initMouseEvent("click", true, true, window, 1, 0, 0, 0, 0,
-          false, false, false, false, 0, null);
-      elem.dispatchEvent(evt);
-    })
-
-    // action.trigger("click")
-  }
+                .separator30
+                .separator30

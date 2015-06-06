@@ -52,13 +52,6 @@
       .separator15
       = yield
 
-    %script{src: "/bower_components/jquery/dist/jquery.min.js"}
-    %script{src: "/bower_components/materialize/dist/js/materialize.min.js"}
-    :javascript
-
-      $(document).ready(function () {
-        $('.button-collapse').sideNav();
-        $('.collapsible').collapsible({
-            'accordion': false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-        });
-      });
+    %script{ src: "/bower_components/jquery/dist/jquery.min.js" }
+    %script{ src: "/bower_components/materialize/dist/js/materialize.min.js" }
+    %script{ src: "/main.js" }

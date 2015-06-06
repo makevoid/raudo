@@ -15,6 +15,10 @@ class App < Sinatra::Base
 
   UNPROTECTED_URLS = ["/style.css", "style.css"]
 
+  # set :show_exceptions, :after_handler
+  # error do
+  #   { asd: '' }.to_json
+  # end
 
   before do
     if APP_ENV != "development"
@@ -83,6 +87,9 @@ class App < Sinatra::Base
   post /\/apps\/(\w+)\/actions/ do |app_name|
     content_type :json
     app = { name: app_name }
+    raise params.inspect
+    action = params[:name].to_sym
+    ActionJob.new.async.perform event: action, repo: "mkdeploy"
     app.to_json
   end
 

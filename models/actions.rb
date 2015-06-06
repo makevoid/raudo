@@ -9,6 +9,8 @@ class Action
   DIR_APP    = "/www/%s"        # usage: APP_DIR % "raudo"
   DIR_PUBLIC = "/www/%s/public" # usage: DIR_PUBLIC % "antani"
 
+  # TASKS = %w(deploy restart setup db_create db_migrate)
+
   def deploy
     branch = "master"
     # branch = split repo, :branch # repo = "makevoid/mkdeploy:master" <|> "username/repo:branch"
@@ -23,7 +25,7 @@ class Action
     ssh cmd, dir: DIR_APPS
   end
 
-  def setup(repo="mkdeploy")
+  def setup(repo:)
     ssh "mkdir -p #{DIR_APPS}", server: server
     ssh "git clone https://github.com/makevoid/#{repo}", dir: DIR_APPS, server: server
   end
@@ -32,8 +34,8 @@ class Action
 
   attr_reader :server
 
-  def initialize
-    @server = "makevoid@localhost"
+  def initialize(server:)
+    @server = server
   end
 
   # include DBActionPlugin
