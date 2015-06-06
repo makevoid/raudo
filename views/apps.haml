@@ -18,9 +18,15 @@
           &nbsp;#{app.name}
         .collapsible-body
           .separator15
-          .col.s12
-            .col.s1
-            .col.s10
+          .align-right
+            .col.s11
+              %button.btn.btn-floating.grey
+                %span.mdi-action-settings
+              &nbsp;
+              %span.grey-text.text-lighten-2.font-lighter Settings
+          .container
+            .asd
+            .col.s12
               :ruby
                 # Task.all
                 # Task.sub.all
@@ -45,54 +51,32 @@
 
                 # app_tasks > submenu
 
-              :css
-                .left {
-                  float: left;
-                }
-                .clear {
-                  clear: both;
-                }
-
-              %h4 Actions
+              %h5 Actions
               -#   | Tasks
 
-              :css
-                .btn.left {
-                  margin: 5px;
-                }
-                .inset {
-                  margin-left: 15px;
-                }
-                .relative {
-                  position: relative;
-                }
-
-              .mk_progress.hidden
-                .progress_bar
-                .progress_text
-
-              %ul.inset
+              %ul.row.inset
                 - for task in tasks.main
-                  %li.btn.action.left{ data: { action_name: task } }
-                    = task
+                  %li.col.col-45.align-center
+                    %button.btn.blue.darken-2.action.left{ data: { action_name: task } }
+                      = task
                 .clear
                 .separator30
 
-                %h5 DB
-                %ul
-                  - for task_db in tasks.sub.db
-                    %li.btn.action.left{ data: { action_name: task_db } }
+              %h5 DB
+              %ul.row
+                - for task_db in tasks.sub.db
+                  %li.col.col-45.align-center
+                    %button.btn.blue.action.left{ data: { action_name: task_db } }
                       = task_db
-                  .clear
+                .clear
 
                 .separator30
-                .separator30
-                .btn Settings
                 .separator15
-                %input{ name: "repo", placeholder: "username/repo (github)", type: "text" }
+              %input{ name: "repo", placeholder: "username/repo (github)", type: "text" }
               .separator30
-
-
+              .width-full.progress.progress-info.progress-striped.active.mk_progress.progress_bar.hidden
+                .bar.width-full
+                  .progress_text
 
     /
       %li

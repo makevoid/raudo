@@ -46,4 +46,8 @@ body.home{
 .font-lighter{
 	font-weight: lighter;
 }
+/*Layout*/
+.width-full{
+	min-width:100%;
+}
 
