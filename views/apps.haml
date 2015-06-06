@@ -36,23 +36,16 @@
               %h5 Actions
               -#   | Tasks
 
-              :css
-                .progress {
-                  height: 35px;
-                }
-                .hidden {
-                  display: none;
-                }
 
-              %input{ name: "repo", placeholder: "username/repo (github)", type: "text" }
+              .settings.hidden
+                %input{ name: "repo", placeholder: "username/repo (github)", type: "text" }
 
-              .width-full.progress.progress-info.progress-striped.active.mk_progress.progress_bar.hidden
-                .bar.width-full
-                  .progress_text
+              .mk_progress.hidden
+                .width-full.progress.progress-info.progress-striped.active.progress_bar
+                  .bar.width-full
+                    .separator5
+                    .progress_text
 
-              .separator30
-              .separator30
-              .separator30
 
               %ul.row.inset
                 - for task in tasks.main

@@ -22,6 +22,9 @@ body.home{
 .hidden {
 	display: none;
 }
+.shrunk {
+	height: 0;
+}
 .separator5{
 	min-height: 5px;
 	min-width:100%;
@@ -49,11 +52,4 @@ body.home{
 /*Layout*/
 .width-full{
 	min-width:100%;
-}
-
-.progress {
-	width: 100%;
-	left: 0;
-	position: absolute;
-	height: 40px;
 }

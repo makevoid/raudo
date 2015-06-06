@@ -1,14 +1,4 @@
-// jquery suxed js by pippo
 
-$(document).ready(function () {
-  $('.button-collapse').sideNav();
-  $('.collapsible').collapsible({
-      'accordion': false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
-  });
-});
-
-
-// good js by mad :p
 
 var progress      = document.querySelector(".container .mk_progress")
 var progress_bar  = document.querySelector(".container .mk_progress .progress")
@@ -29,23 +19,47 @@ arr.forEach.call(buttons, function(button){
 })
 
 
+
+
 // xhr
-var actionRequest = function(app){
-  console.log("app: "+app)
-  var oReq = new XMLHttpRequest()
-  oReq.onload = reqListener
-  var body = { name: "restart" }
-  oReq.open("post", "/apps/"+app.id+"/actions", true)
-  oReq.send(body);
+
+
+// error handling
+var handle_error = function(resp) {
+  var error = resp.error
+  if (error) {
+    console.log("ERROR:")
+    console.log(error.name)
+    console.log(error.message+"\n")
+    console.log("")
+    // console.debug(error.backtrace.join("\n"))
+    // console.log("")
+  }
 }
 
-function reqListener () {
-  console.log("got: "+this.responseText)
-  setTimeout(function() {
-    console.log("ended: "+this.responseText)
-    progress.classList.add("hidden")
-  }, 2000)
+
+// main request
+var actionRequest = function(app){
+  var url  = "/apps/"+app.name+"/actions"
+  var body = { name: "restart" }
+
+
+  var oReq    = new XMLHttpRequest()
+  oReq.onload = function() { // reqListener
+    var resp = JSON.parse(this.responseText)
+
+    handle_error(resp)
+
+    setTimeout(function() {
+      console.log("process ended: app_name: "+app.name)
+      progress.classList.add("hidden")
+    }, 2000)
+  }
+
+  oReq.open("post", url, true)
+  oReq.send(body)
 }
+
 
 // router
 var route = /\/apps\/([\w_]+)\/actions/
@@ -68,3 +82,13 @@ if (location.pathname.match(route)) {
 
   // action.trigger("click")
 }
+
+
+// jquery
+
+$(document).ready(function () { // addEventListener "DOMContentLoaded"
+  $('.button-collapse').sideNav(); // asd
+  $('.collapsible').collapsible({
+      'accordion': false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+  });
+});

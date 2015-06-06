@@ -1,5 +1,15 @@
 .progress {
-  height: 20px;
+	width: 100%;
+	left: 0;
+	position: absolute;
+	height: 35px;
+}
+.progress .progress_text span {
+	font-size: 1.35em;
+}
+
+.progress {
+  height: 35px;
   width: 40%;
   margin: 1.7em auto;
   overflow: hidden;
@@ -12,6 +22,16 @@
   background-repeat: repeat-x;
   border-radius:0 0 0 0;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff5f5f5', endColorstr='#fff9f9f9', GradientType=0);
+
+}
+
+.mk_progress {
+  height: 80px;
+  animation: height 0.5s ease-in-out;
+}
+
+.mk_progress.hidden {
+  height: 0px;
 }
 
 .progress .bar {

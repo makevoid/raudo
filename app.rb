@@ -15,10 +15,13 @@ class App < Sinatra::Base
 
   UNPROTECTED_URLS = ["/style.css", "style.css"]
 
-  # set :show_exceptions, :after_handler
-  # error do
-  #   { asd: '' }.to_json
-  # end
+  set :show_exceptions, false
+
+  error do
+    content_type :json
+    error = env['sinatra.error']
+    { error: { name: error.class, message: error.message, backtrace: error.backtrace } }.to_json
+  end
 
   before do
     if APP_ENV != "development"
