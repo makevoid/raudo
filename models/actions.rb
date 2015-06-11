@@ -22,7 +22,8 @@ class Action
 
   def restart(app:)
     cmd = "touch tmp/restart.txt"
-    ssh cmd, dir: DIR_APPS
+    dir = DIR_APP % app
+    ssh cmd, dir: dir
   end
 
   def setup(app:)
@@ -76,7 +77,9 @@ class Action
   end
 
   def ssh(cmd, dir:)
-    super cmd, server: server, dir: dir
+    cd  = "cd #{dir} && " if dir
+    cmd = "#{cd}#{cmd}"
+    super cmd, server: server
   end
 
 end

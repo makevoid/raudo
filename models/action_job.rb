@@ -1,7 +1,7 @@
 class ActionJob
   include SuckerPunch::Job
 
-  DEFAULT_SERVER = "makevoid@localhost"
+  DEFAULT_SERVER = "francescocanessa@localhost"
 
   def perform(event:, app:, server: DEFAULT_SERVER)
     # TODO: filter with TASKS or something similar

@@ -6,6 +6,6 @@ module RemoteExecution
   end
 
   def ssh(cmd, server:, dir: nil)
-    exe "ssh #{server} #{cmd}", dir: dir
+    exe "ssh #{server} \"#{cmd}\"", dir: dir
   end
 end

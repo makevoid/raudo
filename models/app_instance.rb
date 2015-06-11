@@ -20,7 +20,8 @@ class AppInstance
   WWW_PATH = "/www"
 
   # DEFAULT_HOST = "root@makevoid.com"
-  DEFAULT_HOST = "makevoid@localhost"
+  DEFAULT_HOST = "francescocanessa@localhost"
+  # DEFAULT_HOST = "makevoid@localhost"
 
   if defined? DEV_USERNAME
     if DEV_USERNAME == "45kb"
