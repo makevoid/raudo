@@ -22,9 +22,11 @@ class App < Sinatra::Base
     { error: { name: error.class, message: error.message, backtrace: error.backtrace } }.to_json
   end
 
+  PUBLIC_URLS = []
+
   before do
     if APP_ENV != "development"
-      if request.env['omniauth.auth'].nil? && !logged_in? && !(UNPROTECTED_URLS.include? request.path)
+      if request.env['omniauth.auth'].nil? && !logged_in? && !(PUBLIC_URLS.include? request.path)
         halt haml(:log_in)
       end
     else
