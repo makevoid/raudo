@@ -3,15 +3,15 @@ class ActionJob
 
   DEFAULT_SERVER = "makevoid@localhost"
 
-  def perform(event:, repo:, server: DEFAULT_SERVER)
+  def perform(event:, app:, server: DEFAULT_SERVER)
     # TODO: filter with TASKS or something similar
-    Action.new(server: server).public_send event, repo: repo
+    Action.new(server: server).public_send event, app: app
   end
 
-  # ActionJob.new.async.setup(repo: "mkdeploy")
-  # ActionJob.new.async.deploy(repo: "mkdeploy")
-  # ActionJob.new.async.restart(repo: "mkdeploy")
+  # ActionJob.new.async.setup(app: "mkdeploy")
+  # ActionJob.new.async.deploy(app: "mkdeploy")
+  # ActionJob.new.async.restart(app: "mkdeploy")
 
-  # ActionJob.new.async.perform(event: "setup", repo: "mkdeploy")
+  # ActionJob.new.async.perform(event: "setup", app: "mkdeploy")
 
 end

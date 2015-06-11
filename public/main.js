@@ -37,11 +37,12 @@ var handle_error = function(resp) {
   }
 }
 
+var nextEvents = []
 
 // main request
 var actionRequest = function(app){
   var url  = "/apps/"+app.name+"/actions"
-  var body = { name: "restart" }
+  var body = JSON.stringify({ name: "restart" })
 
 
   var oReq    = new XMLHttpRequest()
@@ -50,10 +51,9 @@ var actionRequest = function(app){
 
     handle_error(resp)
 
-    setTimeout(function() {
-      console.log("process ended: app_name: "+app.name)
-      progress.classList.add("hidden")
-    }, 2000)
+    nextEvents.push(
+      { action: resp }
+    )
   }
 
   oReq.open("post", url, true)
@@ -82,6 +82,14 @@ if (location.pathname.match(route)) {
 
   // action.trigger("click")
 }
+
+// SSE
+var es = new EventSource('/stream');
+es.onmessage = function(message) {
+  console.log(JSON.stringify(message)+ "\n")
+};
+
+
 
 
 // jquery

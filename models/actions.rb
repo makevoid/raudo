@@ -20,14 +20,14 @@ class Action
     puts "deploy finished"
   end
 
-  def restart
-    cmd = "touch tmp/restart"
+  def restart(app:)
+    cmd = "touch tmp/restart.txt"
     ssh cmd, dir: DIR_APPS
   end
 
-  def setup(repo:)
+  def setup(app:)
     ssh "mkdir -p #{DIR_APPS}", server: server
-    ssh "git clone https://github.com/makevoid/#{repo}", dir: DIR_APPS, server: server
+    ssh "git clone https://github.com/makevoid/#{app}", dir: DIR_APPS, server: server
   end
 
   ##
@@ -73,6 +73,10 @@ class Action
 
   def app_language
     # TODO: detect app language - config.ru = ruby, package.json = html/node} - host node ones with nginx directive or mongrel2 (that has awesome configs)
+  end
+
+  def ssh(cmd, dir:)
+    super cmd, server: server, dir: dir
   end
 
 end

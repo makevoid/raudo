@@ -90,15 +90,33 @@ class App < Sinatra::Base
   post /\/apps\/(\w+)\/actions/ do |app_name|
     content_type :json
     app = { name: app_name }
-    raise params.inspect
-    action = params[:name].to_sym
-    ActionJob.new.async.perform event: action, repo: "mkdeploy"
+    request.body.rewind
+    payload = JSON.parse(request.body.read)
+    action = payload["name"].to_sym
+    ActionJob.new.async.perform event: action, app: "mkdeploy"
+    settings.connections.each do |out|
+      out << "data: #{params[:msg]}\n\n"
+    end
     app.to_json
   end
 
   get "/apps/:id/actions" do
     haml :apps
   end
+
+
+  # deploy server sent events
+
+  set server: 'thin', connections: []
+
+  get '/stream', provides: 'text/event-stream' do
+    stream :keep_open do |out|
+      puts "sending: #{out}"
+      settings.connections << out
+      out.callback { settings.connections.delete(out) }
+    end
+  end
+
 
   # style TODO change in prod
 

@@ -1,7 +1,7 @@
 module Execution
   def exe(cmd, dir: nil)
     puts "executing: #{cmd}"
-    cd  = "cd #{dir};" if cd
+    cd  = "cd #{dir};" if dir
     out = `#{cd}#{cmd}`
     puts out
     puts
