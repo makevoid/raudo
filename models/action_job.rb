@@ -3,9 +3,11 @@ class ActionJob
 
   DEFAULT_SERVER = "francescocanessa@localhost"
 
-  def perform(event:, app:, server: DEFAULT_SERVER)
+  def perform(event:, app:, connections:, server: DEFAULT_SERVER)
     # TODO: filter with TASKS or something similar
-    Action.new(server: server).public_send event, app: app
+    action = Action.new(server: server, connections: connections)
+    action.public_send event, app: app
+    action.notify event
   end
 
   # ActionJob.new.async.setup(app: "mkdeploy")

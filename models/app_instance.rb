@@ -7,8 +7,6 @@ APP_INSTS = [
 # app = Qualcosa.deploy app: AppDef.new(antani: true), host: Host.new(:antani)
 
 
-
-
 Transproc.register :to_json, -> v { JSON.dump v }
 
 class AppInstance

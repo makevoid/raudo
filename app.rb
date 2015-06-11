@@ -13,7 +13,6 @@ class App < Sinatra::Base
     provider :google_oauth2, CONFIG[:google_oauth_identifier], CONFIG[:google_oauth_secret]
   end
 
-  UNPROTECTED_URLS = ["/style.css", "style.css"]
 
   set :show_exceptions, false
 
@@ -93,10 +92,11 @@ class App < Sinatra::Base
     request.body.rewind
     payload = JSON.parse(request.body.read)
     action = payload["name"].to_sym
-    ActionJob.new.async.perform event: action, app: "mkdeploy"
-    settings.connections.each do |out|
-      out << "data: #{params[:msg]}\n\n"
-    end
+    ActionJob.new.async.perform(
+      event: action,
+      app: "mkdeploy",
+      connections: settings.connections
+    )
     app.to_json
   end
 
@@ -111,18 +111,9 @@ class App < Sinatra::Base
 
   get '/stream', provides: 'text/event-stream' do
     stream :keep_open do |out|
-      puts "sending: #{out}"
       settings.connections << out
       out.callback { settings.connections.delete(out) }
     end
-  end
-
-
-  # style TODO change in prod
-
-  get '/style.css' do
-    content_type "text/css"
-    File.read 'bower_components/materialize/dist/css/materialize.min.css'
   end
 
 end

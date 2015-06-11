@@ -11,13 +11,12 @@ class Action
 
   # TASKS = %w(deploy restart setup db_create db_migrate)
 
-  def deploy
+  def deploy(app:)
     branch = "master"
     # branch = split repo, :branch # repo = "makevoid/mkdeploy:master" <|> "username/repo:branch"
-    ssh "git pull origin #{branch}"
-
-    restart
-    puts "deploy finished"
+    dir = DIR_APP % app
+    ssh "git pull origin #{branch}", dir: dir
+    restart app: app
   end
 
   def restart(app:)
@@ -27,16 +26,17 @@ class Action
   end
 
   def setup(app:)
-    ssh "mkdir -p #{DIR_APPS}", server: server
-    ssh "git clone https://github.com/makevoid/#{app}", dir: DIR_APPS, server: server
+    ssh "mkdir -p #{DIR_APPS}"
+    ssh "git clone https://github.com/makevoid/#{app}", dir: DIR_APPS
   end
 
   ##
 
-  attr_reader :server
+  attr_reader :server, :connections
 
-  def initialize(server:)
-    @server = server
+  def initialize(server:, connections:)
+    @server       = server
+    @connections  = connections
   end
 
   # include DBActionPlugin
@@ -67,7 +67,13 @@ class Action
   end
 
   def screen_capture_window
+    # https://github.com/maxwell/screencap
+  end
 
+  def notify(action)
+    connections.each do |out|
+      out << "data: #{action}\n\n"
+    end
   end
 
   private

@@ -1,5 +1,4 @@
-
-
+//
 var progress      = document.querySelector(".container .mk_progress")
 var progress_bar  = document.querySelector(".container .mk_progress .progress")
 var progress_text = document.querySelector(".container .mk_progress .progress_text")
@@ -9,8 +8,9 @@ var onAction = function(evt) {
   progress_bar.style.top = progress.offsetTop
   progress_text.innerHTML = "executing: <span>"+action+"</span> ..."
 
+
   var app = { name: "mkdeploy" };
-  actionRequest(app)
+  actionRequest(app, action)
 }
 var buttons = document.querySelectorAll(".container .btn.action")
 var arr = []
@@ -40,10 +40,9 @@ var handle_error = function(resp) {
 var nextEvents = []
 
 // main request
-var actionRequest = function(app){
+var actionRequest = function(app, action){
   var url  = "/apps/"+app.name+"/actions"
-  var body = JSON.stringify({ name: "restart" })
-
+  var body = JSON.stringify({ name: action })
 
   var oReq    = new XMLHttpRequest()
   oReq.onload = function() { // reqListener
@@ -57,6 +56,7 @@ var actionRequest = function(app){
   }
 
   oReq.open("post", url, true)
+  oReq.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
   oReq.send(body)
 }
 
@@ -86,7 +86,10 @@ if (location.pathname.match(route)) {
 // SSE
 var es = new EventSource('/stream');
 es.onmessage = function(message) {
-  console.log(JSON.stringify(message)+ "\n")
+  console.log("message: "+JSON.stringify(message)+ "\n")
+
+  var progress = document.querySelector(".mk_progress")
+  progress.classList.add("hidden")
 };
 
 
