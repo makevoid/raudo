@@ -2,42 +2,49 @@
 var progress      = document.querySelector(".container .mk_progress")
 var progress_bar  = document.querySelector(".container .mk_progress .progress")
 var progress_text = document.querySelector(".container .mk_progress .progress_text")
-var onAction = function(evt) {
-  var action = evt.target.dataset.actionName
+
+var show_progress_bar = function(action) {
   progress.classList.remove("hidden")
   progress_bar.style.top = progress.offsetTop
   progress_text.innerHTML = "executing: <span>"+action+"</span> ..."
-
-
-  var app = { name: "mkdeploy" };
+}
+var onAction = function(evt) {
+  var data   = evt.target.dataset
+  var action = data.actionName
+  show_progress_bar(action)
+  var app = { name: data.appName }
   actionRequest(app, action)
 }
-var buttons = document.querySelectorAll(".container .btn.action")
-var arr = []
-arr.forEach.call(buttons, function(button){
-  button.addEventListener("click", onAction)
-})
+var bind_action_buttons = function() {
+  var buttons = document.querySelectorAll(".container .btn.action")
+  var arr = []
+  arr.forEach.call(buttons, function(button){
+    button.addEventListener("click", onAction)
+  })
+}
+var bind_create_button = function() {
+  var btn = document.querySelector(".btn.create_app")
+  btn.addEventListener("click", function(){
+    var create_field = document.querySelector("input.app[name=name]")
+    var app = create_field.value
+    if (app) {
+      show_progress_bar("cloning "+app)
+      createRequest(app)
+    }
+  })
+}
 
 
-
-
-// xhr
-
-
-// error handling
 var handle_error = function(resp) {
   var error = resp.error
   if (error) {
     console.log("ERROR:")
     console.log(error.name)
     console.log(error.message+"\n")
-    console.log("")
     // console.debug(error.backtrace.join("\n"))
-    // console.log("")
   }
 }
 
-var nextEvents = []
 
 // main request
 var actionRequest = function(app, action){
@@ -47,51 +54,42 @@ var actionRequest = function(app, action){
   var oReq    = new XMLHttpRequest()
   oReq.onload = function() { // reqListener
     var resp = JSON.parse(this.responseText)
-
     handle_error(resp)
-
-    nextEvents.push(
-      { action: resp }
-    )
+    // console.log("got response: "+JSON.stringify(resp))
   }
-
   oReq.open("post", url, true)
   oReq.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
   oReq.send(body)
 }
 
-
-// router
-var route = /\/apps\/([\w_]+)\/actions/
-if (location.pathname.match(route)) {
-  var match = route.exec(location.pathname)[1]
-  var action = document.querySelector(".btn[data-action-name='"+match+"']")
-
-
-  var elements = document.querySelectorAll(".hidden")
-  var arr = []
-  arr.forEach.call(elements, function(elem){
-    elem.classList.remove("hidden")
-    elem.dispatchEvent("click")
-
-    var evt = document.createEvent("MouseEvents");
-    evt.initMouseEvent("click", true, true, window, 1, 0, 0, 0, 0,
-        false, false, false, false, 0, null);
-    elem.dispatchEvent(evt);
-  })
-
-  // action.trigger("click")
+var createRequest = function(app){
+  var url  = "/apps"
+  var body = JSON.stringify({ name: app })
+  var oReq    = new XMLHttpRequest()
+  oReq.onload = function() { // reqListener
+    var resp = JSON.parse(this.responseText)
+    handle_error(resp)
+    console.log("got response: "+JSON.stringify(resp))
+  }
+  oReq.open("post", url, true)
+  oReq.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+  oReq.send(body)
 }
 
-// SSE
-var es = new EventSource('/stream');
-es.onmessage = function(message) {
+var on_sse_received = function(message) {
   console.log("message: "+JSON.stringify(message)+ "\n")
-
-  var progress = document.querySelector(".mk_progress")
   progress.classList.add("hidden")
-};
+}
 
+// -------------------------------------
+
+// main
+
+bind_create_button()
+bind_action_buttons()
+
+var es = new EventSource('/stream')
+es.onmessage = on_sse_received
 
 
 
@@ -103,3 +101,14 @@ $(document).ready(function () { // addEventListener "DOMContentLoaded"
       'accordion': false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
   });
 });
+
+
+
+// notes
+
+// simple router
+//
+// var route = /\/apps\/([\w_]+)\/actions/
+// if (location.pathname.match(route)) {
+//   // match route
+// }

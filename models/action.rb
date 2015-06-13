@@ -2,10 +2,13 @@
 #
 # Action.new.setup
 
+require_relative 'conf'
+
 class Action
   include RemoteExecution
+  include Notify
 
-  DIR_APPS   = "/www"
+  DIR_APPS   = Conf::DIR_APPS
   DIR_APP    = "/www/%s"        # usage: APP_DIR % "raudo"
   DIR_PUBLIC = "/www/%s/public" # usage: DIR_PUBLIC % "antani"
 
@@ -26,8 +29,7 @@ class Action
   end
 
   def setup(app:)
-    ssh "mkdir -p #{DIR_APPS}"
-    ssh "git clone https://github.com/makevoid/#{app}", dir: DIR_APPS
+
   end
 
   ##
@@ -54,7 +56,7 @@ class Action
   end
 
   def db_migrate
-
+    # ruby lib/migrate.rb
   end
 
   # include ScreenshotPlugin
@@ -68,12 +70,6 @@ class Action
 
   def screen_capture_window
     # https://github.com/maxwell/screencap
-  end
-
-  def notify(action)
-    connections.each do |out|
-      out << "data: #{action}\n\n"
-    end
   end
 
   private

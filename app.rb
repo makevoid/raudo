@@ -90,20 +90,28 @@ class App < Sinatra::Base
 
   post /\/apps\/(\w+)\/actions/ do |app_name|
     content_type :json
-    app = { name: app_name }
     request.body.rewind
     payload = JSON.parse(request.body.read)
     action = payload["name"].to_sym
     ActionJob.new.async.perform(
       event: action,
-      app: "mkdeploy",
+      app: app_name,
       connections: settings.connections
     )
-    app.to_json
+    { name: app_name }.to_json
   end
 
-  get "/apps/:id/actions" do
-    haml :apps
+
+  post "/apps" do
+    content_type :json
+    request.body.rewind
+    payload = JSON.parse(request.body.read)
+    app_name = payload["name"].to_sym
+    CreateJob.new.async.perform(
+      app: app_name,
+      connections: settings.connections
+    )
+    { name: app_name }.to_json
   end
 
 

@@ -3,11 +3,22 @@
   %a{ href: "/apps" } Installed
   |
   %a{ href: "#/apps_definitions" } Definitions
-  %a.right{ href: "javascript:void(0)" } Add app [+]
 
+  %a.apps_add.right{ href: "javascript:void(0)" }
+    Add app [+]
+  :javascript
+    var apps_add_btn = document.querySelector(".apps_add")
+    apps_add_btn.addEventListener("click", function() {
+      document.querySelector(".apps_new").classList.remove("hidden")
+    })
 
-.row.hidden
-  %h3 New app
+.row.apps_new.hidden
+  %h5 New app
+
+  %label
+    Name:
+    %input.app{ name: "name", type: "text" }
+  %button.create_app.btn.blue.left{ data: { action_name: "create_app" } } Add
 
 .row
   %ul.collapsible.active{ data: { collapsible: "accordion" } }
@@ -49,7 +60,7 @@
               %ul.row.inset
                 - for task in tasks.main
                   %li.col.col-45.align-center
-                    %button.btn.blue.darken-2.action.left{ data: { action_name: task } }
+                    %button.btn.blue.darken-2.action.left{ data: { action_name: task, app_name: app.name } }
                       = task
                 .clear
                 .separator30
@@ -59,7 +70,7 @@
               %ul.row
                 - for task_db in tasks.sub.db
                   %li.col.col-45.align-center
-                    %button.btn.blue.action.left{ data: { action_name: task_db } }
+                    %button.btn.blue.action.left{ data: { action_name: task_db, app_name: app.name } }
                       = task_db
                 .clear
 
@@ -70,7 +81,7 @@
               %ul.row
                 - for task_monitoring in tasks.sub.monitoring
                   %li.col.col-45.align-center
-                    %button.btn.blue.action.left{ data: { action_name: task_monitoring } }
+                    %button.btn.blue.action.left{ data: { action_name: task_monitoring, app_name: app.name } }
                       = task_monitoring
                 .clear
 

@@ -33,6 +33,7 @@ CONFIG[:google_oauth_secret]      = secret
 
 require "#{path}/lib/execution"
 require "#{path}/lib/remote_execution"
+require "#{path}/lib/notify"
 
 Dir["#{path}/models/*.rb"].each do |app|
   require app
