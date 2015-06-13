@@ -1,3 +1,5 @@
+require_relative "conf"
+
 class Creation
   include RemoteExecution
   include Notify
