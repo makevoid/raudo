@@ -29,7 +29,10 @@ class Action
   end
 
   def setup(app:)
-
+    cmd = "bundle install"
+    # cmd = "npm install" if APP_TYPE == :node
+    dir = DIR_APP % app
+    ssh cmd, dir: dir
   end
 
   ##
