@@ -2,7 +2,6 @@
 
 var show_progress_bar = function(app, action) {
   var prog_sel      = ".container li[data-app-name="+app.name+"] .mk_progress"
-  console.log(prog_sel)
   var progress      = document.querySelector(prog_sel)
   var progress_bar  = document.querySelector(prog_sel+" .progress")
   var progress_text = document.querySelector(prog_sel+" .progress_text")
@@ -71,7 +70,7 @@ var createRequest = function(app){
   oReq.onload = function() { // reqListener
     var resp = JSON.parse(this.responseText)
     handle_error(resp)
-    console.log("got response: "+JSON.stringify(resp))
+    // console.log("got response: "+JSON.stringify(resp))
   }
   oReq.open("post", url, true)
   oReq.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
@@ -79,7 +78,7 @@ var createRequest = function(app){
 }
 
 var on_sse_received = function(message) {
-  console.log("message: "+JSON.stringify(message)+ "\n")
+  // console.log("message: "+JSON.stringify(message)+ "\n")
   var progress      = document.querySelectorAll(".container .mk_progress")
   var arr = []
   arr.forEach.call(progress, function(progress){
