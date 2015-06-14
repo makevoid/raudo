@@ -23,7 +23,7 @@
 .row
   %ul.collapsible.active{ data: { collapsible: "accordion" } }
     - AppInstance.all.each do |app|
-      %li
+      %li{ data: { app_name: app.name } }
         .collapsible-header
           %i.mdi-image-filter-drama
           &nbsp;#{app.name}

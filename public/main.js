@@ -1,9 +1,11 @@
 //
-var progress      = document.querySelector(".container .mk_progress")
-var progress_bar  = document.querySelector(".container .mk_progress .progress")
-var progress_text = document.querySelector(".container .mk_progress .progress_text")
 
-var show_progress_bar = function(action) {
+var show_progress_bar = function(app, action) {
+  var prog_sel      = ".container li[data-app-name="+app.name+"] .mk_progress"
+  console.log(prog_sel)
+  var progress      = document.querySelector(prog_sel)
+  var progress_bar  = document.querySelector(prog_sel+" .progress")
+  var progress_text = document.querySelector(prog_sel+" .progress_text")
   progress.classList.remove("hidden")
   progress_bar.style.top = progress.offsetTop
   progress_text.innerHTML = "executing: <span>"+action+"</span> ..."
@@ -11,8 +13,8 @@ var show_progress_bar = function(action) {
 var onAction = function(evt) {
   var data   = evt.target.dataset
   var action = data.actionName
-  show_progress_bar(action)
   var app = { name: data.appName }
+  show_progress_bar(app, action)
   actionRequest(app, action)
 }
 var bind_action_buttons = function() {
@@ -78,7 +80,11 @@ var createRequest = function(app){
 
 var on_sse_received = function(message) {
   console.log("message: "+JSON.stringify(message)+ "\n")
-  progress.classList.add("hidden")
+  var progress      = document.querySelectorAll(".container .mk_progress")
+  var arr = []
+  arr.forEach.call(progress, function(progress){
+    progress.classList.add("hidden")
+  })
 }
 
 // -------------------------------------
