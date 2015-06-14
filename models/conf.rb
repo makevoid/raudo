@@ -1,8 +1,12 @@
 class Conf
   DIR_APPS = "/www"
-  # DEFAULT_HOST = "root@makevoid.com"
-  DEFAULT_HOST = "francescocanessa@localhost"
-  # DEFAULT_HOST = "makevoid@localhost"
+
+  DEFAULT_HOST = ENV["RACK_ENV"] == "development"
+  # "makevoid@localhost"
+    "francescocanessa@localhost"
+  else
+    "www@sys.makevoid.com"
+  end
 
   if defined? DEV_USERNAME
     if DEV_USERNAME == "45kb"
