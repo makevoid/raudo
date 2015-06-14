@@ -1,8 +1,8 @@
 class Conf
   DIR_APPS = "/www"
 
-  DEFAULT_HOST = ENV["RACK_ENV"] == "development"
-  # "makevoid@localhost"
+  DEFAULT_HOST = if ENV["RACK_ENV"] == "development"
+    # "makevoid@localhost"
     "francescocanessa@localhost"
   else
     "www@sys.makevoid.com"
