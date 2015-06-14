@@ -1,9 +1,9 @@
 class ActionJob
   include SuckerPunch::Job
 
-  DEFAULT_SERVER = "francescocanessa@localhost"
+  DEFAULT_HOST = Conf::DEFAULT_HOST
 
-  def perform(event:, app:, connections:, server: DEFAULT_SERVER)
+  def perform(event:, app:, connections:, server: DEFAULT_HOST)
     # TODO: filter with TASKS or something similar
     action = Action.new(server: server, connections: connections)
     action.public_send event, app: app

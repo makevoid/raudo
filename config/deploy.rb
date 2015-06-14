@@ -26,6 +26,9 @@ task deploy: :environment do
     invoke :'bundle:install'
 
     to :launch do
+      # todo: move into its own task
+      queue 'bower install'
+
       queue 'mkdir -p tmp'
       queue 'touch tmp/restart.txt'
     end
