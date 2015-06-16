@@ -3,7 +3,7 @@
 var show_progress_bar = function(app, action) {
   var li_elem       = ""
   if (app.name)
-    li_elem         = "li[data-app-name="+app.name+"]"
+    li_elem         = " li[data-app-name="+app.name+"]"
   var prog_sel      = ".container"+li_elem+" .mk_progress"
   var progress      = document.querySelector(prog_sel)
   var progress_bar  = document.querySelector(prog_sel+" .progress")
