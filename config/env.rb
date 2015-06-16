@@ -3,7 +3,7 @@ Bundler.require :default
 
 path    = File.expand_path "../../", __FILE__
 PATH    = path
-env     = ENV["RACK_ENV"]
+env     = ENV["RACK_ENV"] || "development"
 APP_ENV = env
 
 ALLOWED_USERS = [

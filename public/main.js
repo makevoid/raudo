@@ -25,14 +25,16 @@ var bind_action_buttons = function() {
 }
 var bind_create_button = function() {
   var btn = document.querySelector(".btn.create_app")
-  btn.addEventListener("click", function(){
-    var create_field = document.querySelector("input.app[name=name]")
-    var app = create_field.value
-    if (app) {
-      show_progress_bar("cloning "+app)
-      createRequest(app)
-    }
-  })
+  if (btn) {
+    btn.addEventListener("click", function(){
+      var create_field = document.querySelector("input.app[name=name]")
+      var app = create_field.value
+      if (app) {
+        show_progress_bar("cloning "+app)
+        createRequest(app)
+      }
+    })
+  }
 }
 
 
