@@ -1,5 +1,6 @@
 require 'bundler/setup'
 Bundler.require :default
+require 'securerandom'
 
 path    = File.expand_path "../../", __FILE__
 PATH    = path
@@ -9,10 +10,12 @@ APP_ENV = env
 ALLOWED_USERS = [
   "makevoid@gmail.com",
   "filippo.oretti@gmail.com",
-  "720kb.net@gmail.com"
+  "720kb.net@gmail.com",
+  "okkio84@gmail.com",
 ]
 
 CONFIG = {}
+
 
 DEV_USERNAME = `whoami`.strip
 gauth_config_path = if DEV_USERNAME == "45kb"
@@ -21,6 +24,7 @@ else
   "~/.google_auth"
 end
 
+# TODO: auto generate key with: SecureRandom.base64 and write if not present
 auth = File.read(File.expand_path gauth_config_path)
 identifier, secret = auth.split("|").map(&:strip)
 
