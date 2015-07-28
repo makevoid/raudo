@@ -35,6 +35,12 @@ class Action
     ssh cmd, dir: dir
   end
 
+  def rake(app:)
+    cmd = "rake"
+    dir = DIR_APP % app
+    ssh cmd, dir: dir
+  end
+
   ##
 
   attr_reader :server, :connections

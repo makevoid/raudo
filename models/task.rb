@@ -8,6 +8,7 @@ class Task
         deploy
         restart
         setup
+        rake
       ),
       sub:  H.new(
         db: %w(
