@@ -29,7 +29,9 @@ class AppInstance
   end
 
   def clone(server=DEFAULT_HOST)
-    ssh "git clone https://github.com/makevoid/mkdeploy", server: server
+    # TODO: not used?
+    #
+    # ssh "git clone https://github.com/makevoid/mkdeploy", server: server
   end
 
   private

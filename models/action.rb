@@ -33,6 +33,11 @@ class Action
     # cmd = "npm install" if APP_TYPE == :node
     dir = DIR_APP % app
     ssh cmd, dir: dir
+
+    # TODO: if APP_TYPE == :node && package.json || bower.json
+    cmd = "bower install" # or npm install of course
+    dir = DIR_APP % app
+    ssh cmd, dir: dir
   end
 
   def rake(app:)

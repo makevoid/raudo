@@ -92,10 +92,10 @@ class App < Sinatra::Base
     content_type :json
     request.body.rewind
     payload = JSON.parse(request.body.read)
-    action = payload["name"].to_sym
+    action  = payload["name"].to_sym
     ActionJob.new.async.perform(
-      event: action,
-      app: app_name,
+      event:       action,
+      app:         app_name,
       connections: settings.connections
     )
     { name: app_name }.to_json
@@ -105,10 +105,10 @@ class App < Sinatra::Base
   post "/apps" do
     content_type :json
     request.body.rewind
-    payload = JSON.parse(request.body.read)
+    payload  = JSON.parse(request.body.read)
     app_name = payload["name"].to_sym
     CreateJob.new.async.perform(
-      app: app_name,
+      app:         app_name,
       connections: settings.connections
     )
     { name: app_name }.to_json
