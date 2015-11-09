@@ -29,11 +29,13 @@ class Action
   end
 
   def setup(app:)
+    puts "executing bundle:"
     cmd = "bundle install"
     # cmd = "npm install" if APP_TYPE == :node
     dir = DIR_APP % app
     ssh cmd, dir: dir
 
+    puts "executing bower:"
     # TODO: if APP_TYPE == :node && package.json || bower.json
     cmd = "bower install" # or npm install of course
     dir = DIR_APP % app
