@@ -2,8 +2,7 @@ class Conf
   DIR_APPS = "/www"
 
   DEFAULT_HOST = if APP_ENV == "development"
-    # "makevoid@localhost"
-    "francescocanessa@localhost"
+    "makevoid@localhost"
   else
     "www@sys.makevoid.com"
   end

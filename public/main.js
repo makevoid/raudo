@@ -16,8 +16,8 @@ var onAction = function(evt) {
   var data   = evt.target.dataset
   var action = data.actionName
   var app = { name: data.appName }
-  show_progress_bar(app, action)
   actionRequest(app, action)
+  show_progress_bar(app, action)
 }
 var bind_action_buttons = function() {
   var buttons = document.querySelectorAll(".container .btn.action")
@@ -33,8 +33,8 @@ var bind_create_button = function() {
       var create_field = document.querySelector("input.app[name=name]")
       var app = create_field.value
       if (app) {
-        show_progress_bar("cloning "+app)
         createRequest(app)
+        show_progress_bar("cloning "+app)
       }
     })
   }

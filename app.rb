@@ -88,7 +88,7 @@ class App < Sinatra::Base
 
   # apps
 
-  post /\/apps\/(\w+)\/actions/ do |app_name|
+  post /\/apps\/(.+)\/actions/ do |app_name|
     content_type :json
     request.body.rewind
     payload = JSON.parse(request.body.read)
