@@ -9,9 +9,9 @@ APP_ENV = env
 
 ALLOWED_USERS = [
   "makevoid@gmail.com",
-  "filippo.oretti@gmail.com",
-  "720kb.net@gmail.com",
-  "okkio84@gmail.com",
+  # "filippo.oretti@gmail.com",
+  # "720kb.net@gmail.com",
+  # "okkio84@gmail.com",
 ]
 
 CONFIG = {}
