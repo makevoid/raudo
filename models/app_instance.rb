@@ -1,3 +1,5 @@
+require_relative "conf"
+
 APP_INSTS = [
   { host: :sys,  redis: 1, mysql: false },
   { host: :mkvd, redis: 1, mysql: true },
