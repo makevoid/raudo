@@ -14,8 +14,8 @@ class Creation
   end
 
   def create(app)
-    username = "makevoid"
-    ssh "cd #{DIR_APPS} && git clone https://github.com/#{username}/#{app}", server: server
+    # username = "makevoid"
+    ssh "cd #{DIR_APPS} && git clone https://github.com/#{app}", server: server
   end
 
 end

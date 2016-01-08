@@ -1,8 +1,9 @@
 %h4.row.blue-text Apps
 .row
-  %a{ href: "/apps" } Installed
-  |
-  %a{ href: "#/apps_definitions" } Definitions
+  /
+    %a{ href: "/apps" } Installed
+    |
+    %a{ href: "#/apps_definitions" } Definitions
 
   %a.apps_add.right{ href: "javascript:void(0)" }
     Add app [+]
@@ -14,12 +15,14 @@
 
 .row.apps_new.hidden
   %h5 New app
-
+  .separator15
   %label
-    Name:
-    %input.app{ name: "name", type: "text" }
+    Github Repo:
+    %input.app{ name: "name", type: "text", placeholder: "username/repo" }
+  .separator15
   %button.create_app.btn.blue.left{ data: { action_name: "create_app" } } Add
-
+  .separator30
+  .separator30
 .row
   %ul.collapsible.active{ data: { collapsible: "accordion" } }
     - AppInstance.all.each do |app|
@@ -66,24 +69,26 @@
                 .separator30
               .separator15
 
-              %h5 DB
-              %ul.row
-                - for task_db in tasks.sub.db
-                  %li.col.col-45.align-center
-                    %button.btn.blue.action.left{ data: { action_name: task_db, app_name: app.name } }
-                      = task_db
-                .clear
+              - if tasks.sub.db.any?
+                %h5 DB
+                %ul.row
+                  - for task_db in tasks.sub.db
+                    %li.col.col-45.align-center
+                      %button.btn.blue.action.left{ data: { action_name: task_db, app_name: app.name } }
+                        = task_db
+                  .clear
 
-                .separator30
-                .separator30
+                  .separator30
+                  .separator30
 
-              %h5 Monitoring
-              %ul.row
-                - for task_monitoring in tasks.sub.monitoring
-                  %li.col.col-45.align-center
-                    %button.btn.blue.action.left{ data: { action_name: task_monitoring, app_name: app.name } }
-                      = task_monitoring
-                .clear
+              - if tasks.sub.monitoring.any?
+                %h5 Monitoring
+                %ul.row
+                  - for task_monitoring in tasks.sub.monitoring
+                    %li.col.col-45.align-center
+                      %button.btn.blue.action.left{ data: { action_name: task_monitoring, app_name: app.name } }
+                        = task_monitoring
+                  .clear
 
-                .separator30
-                .separator30
+                  .separator30
+                  .separator30

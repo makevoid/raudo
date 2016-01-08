@@ -15,10 +15,11 @@ class Action
   # TASKS = %w(deploy restart setup db_create db_migrate)
 
   def deploy(app:)
-    branch = "master"
+    # branch = "master"
     # branch = split repo, :branch # repo = "makevoid/mkdeploy:master" <|> "username/repo:branch"
     dir = DIR_APP % app
-    ssh "git pull origin #{branch}", dir: dir
+    # ssh "git pull origin #{branch}", dir: dir
+    ssh "/usr/local/bin/git-up", dir: dir
     restart app: app
   end
 
@@ -30,14 +31,19 @@ class Action
 
   def setup(app:)
     puts "executing bundle:"
-    cmd = "bundle install"
+    cmd = "bundle"
     # cmd = "npm install" if APP_TYPE == :node
     dir = DIR_APP % app
     ssh cmd, dir: dir
 
-    puts "executing bower:"
+    puts "executing bower install:"
     # TODO: if APP_TYPE == :node && package.json || bower.json
     cmd = "bower install" # or npm install of course
+    dir = DIR_APP % app
+    ssh cmd, dir: dir
+
+    puts "executing npm install:"
+    cmd = "npm install"
     dir = DIR_APP % app
     ssh cmd, dir: dir
   end

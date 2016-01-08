@@ -11,16 +11,20 @@ class Task
         rake
       ),
       sub:  H.new(
-        db: %w(
-          create
-          migrate
-        ),
-        monitoring: %w(
-          screenshot
-          logs
-          munin
-        ),
+        db: %w(),
+        monitoring: %w(),
       ),
+      # sub:  H.new(
+      #   db: %w(
+      #     create
+      #     migrate
+      #   ),
+      #   monitoring: %w(
+      #     screenshot
+      #     logs
+      #     munin
+      #   ),
+      # ),
     )
   end
 
