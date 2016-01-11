@@ -9,6 +9,7 @@ APP_ENV = env
 
 ALLOWED_USERS = [
   "makevoid@gmail.com",
+  "edward@tallysticks.io",
   # "filippo.oretti@gmail.com",
   # "720kb.net@gmail.com",
   # "okkio84@gmail.com",
