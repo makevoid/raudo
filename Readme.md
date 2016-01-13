@@ -34,7 +34,7 @@ Enjoy!
 
 TODO:
 
-
+- list page: include the git commit hash 
 - add mruby integration for nginx: https://github.com/matsumoto-r/ngx_mruby
 - logs
 - slack integration (notification)
