@@ -2,12 +2,16 @@
 
 ### current status
 
+screenshots:
+
+![](https://raw.githubusercontent.com/makevoid/raudo/master/screenshots/raudo_ui.png)
+
 contains:
 
 - oauth with ruby
 - only the app part works, but it let you deploy
 - of the tasks / buttons, only deploy, restart, setup and rake work
-
+- nice mobile friendlty UI done in materialize
 
 ### Setup
 
@@ -30,10 +34,13 @@ Refer to the official google documentation for extra infos on any of these steps
 
 Enjoy!
 
+
+
 ---
 
 TODO:
 
+- refuse to start the app if rack session is not set
 - list page: include the git commit hash 
 - add mruby integration for nginx: https://github.com/matsumoto-r/ngx_mruby
 - logs
