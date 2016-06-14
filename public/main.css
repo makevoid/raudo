@@ -53,3 +53,7 @@ body.home{
 .width-full{
 	min-width:100%;
 }
+
+.tagline {
+  color: #EEE;
+}
