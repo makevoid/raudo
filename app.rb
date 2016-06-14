@@ -1,5 +1,7 @@
 require_relative "./config/env"
 
+CONNS = []
+
 class App < Sinatra::Base
 
   include Voidtools::Sinatra::ViewHelpers
@@ -96,7 +98,7 @@ class App < Sinatra::Base
     ActionJob.new.async.perform(
       event:       action,
       app:         app_name,
-      connections: settings.connections
+      connections: CONNS
     )
     { name: app_name }.to_json
   end
@@ -109,7 +111,7 @@ class App < Sinatra::Base
     app_name = payload["name"].to_sym
     CreateJob.new.async.perform(
       app:         app_name,
-      connections: settings.connections
+      connections: CONNS
     )
     { name: app_name }.to_json
   end
@@ -121,8 +123,14 @@ class App < Sinatra::Base
 
   get '/stream', provides: 'text/event-stream' do
     stream :keep_open do |out|
-      settings.connections << out
-      out.callback { settings.connections.delete(out) }
+      CONNS << out
+      out.callback { CONNS.delete(out) }
+    end
+  end
+
+  get '/test' do
+    CONNS.each do |out|
+      out << "data: #{action}\n\n"
     end
   end
 
