@@ -1,5 +1,5 @@
 module Notify
   def notify(action)
-    EventStream.new << action
+    EventStream.instance << action
   end
 end

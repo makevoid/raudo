@@ -117,7 +117,7 @@ class App < Sinatra::Base
   end
 
   get '/stream' do
-    [200, { "Content-Type" => "text/event-stream;charset=utf-8" }, EventStream.new]
+    [200, { "Content-Type" => "text/event-stream;charset=utf-8" }, EventStream.instance]
   end
 
 end
