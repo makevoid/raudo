@@ -74,3 +74,7 @@ nav .right form.logout input[type=submit]  {
 nav ul.side-nav form.logout {
   display: inline-block;
 }
+
+nav ul.side-nav form.logout input[type=submit]  {
+  padding: 20px 100px 20px 0;
+}
