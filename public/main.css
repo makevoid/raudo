@@ -82,3 +82,7 @@ nav ul.side-nav form.logout input[type=submit]  {
 .btn-task {
   width: 125px;
 }
+
+.container ul.row li {
+  margin-top: 15px
+}
