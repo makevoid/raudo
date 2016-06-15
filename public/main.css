@@ -56,4 +56,21 @@ body.home{
 
 .tagline {
   color: #EEE;
+  font-size: 22px;
+}
+
+form.logout input[type=submit] {
+  background: transparent;
+  border: 0;
+}
+
+nav .right form.logout input[type=submit]  {
+  margin-top: 22px;
+  margin-right: 14px;
+  padding-left: 20px;
+  padding-bottom: 7px;
+}
+
+nav ul.side-nav form.logout {
+  display: inline-block;
 }

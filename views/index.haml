@@ -7,16 +7,9 @@
         %img{src: 'http://i.imgur.com/gq1nGld.png', width:'160'}
         .separator5
         .title Raudo
-        .tagline Deploy web apps in a single click!
+        .tagline Deploy web apps with a single click!
 
 
   =# haml :apps, locals: { apps: apps }
 
   =# haml :machines, locals: { machines: machines }
-
-
-.right
-  %p You are logged in as #{current_user}!
-
-  %form{ action: "/logout", method: "post" }
-    %input{ type: "submit", value: "Logout" }

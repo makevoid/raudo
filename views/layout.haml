@@ -30,8 +30,10 @@
           -# nav_link "Domains"
 
         %ul.right.hide-on-med-and-down
-          %li
-            %a{ href: "/logout" } Logout
+          - if current_user
+            %li
+              %form.logout{ action: "/logout", method: "post" }
+                %input{ type: "submit", value: "Logout" }
         %ul.side-nav#nav-mobile.font-20
           %li
             %a{ href: "/apps" }
@@ -45,10 +47,15 @@
           -#   %a{ href: "/domains" }
           -#     .blue-text.mdi-action-language
           -#       %span.grey-text.text-darken-2 Domains
+
+          -# - if current_user
           %li
-            %a{ href: "/domains" }
-              .dark-text.mdi-maps-directions-walk
-                %span.grey-text.text-darken-2 Logout
+            .dark-text.mdi-maps-directions-walk{ style: "color: grey"}
+              %form.logout{ action: "/logout", method: "post" }
+                %span.grey-text.text-darken-2
+                  %input{ type: "submit", value: "Logout" }
+
+
 
     %section.container
       .separator15

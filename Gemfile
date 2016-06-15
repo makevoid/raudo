@@ -3,6 +3,7 @@ source "http://rubygems.org"
 gem "transproc"
 
 gem "sinatra"
+# gem 'sinatra_contrib'
 gem "voidtools"
 
 gem "haml"
