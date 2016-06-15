@@ -50,12 +50,6 @@ class VHost #NginxVirtualHost
       raudo: {
         subdomain: "deploy",
       },
-      raudo: {
-        subdomain: "deploy",
-      },
-      raudo: {
-        subdomain: "deploy",
-      },
       # antani: {
       #   domain: "antani.com",
       # },

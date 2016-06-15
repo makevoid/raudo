@@ -1,4 +1,4 @@
-require 'bundler/setup'
+require 'bundler'
 Bundler.require :default
 require 'securerandom'
 
@@ -27,10 +27,7 @@ end
 
 # TODO: auto generate key with: SecureRandom.base64 and write if not present
 auth = File.read(File.expand_path gauth_config_path)
-identifier, secret = auth.split("|").map(&:strip)
-
-puts identifier
-puts secret
+identifier, secret = auth.split("|").map &:strip
 
 CONFIG[:google_oauth_identifier]  = identifier
 CONFIG[:google_oauth_secret]      = secret
@@ -48,8 +45,13 @@ end
 AppInst = AppInstance
 
 
-# SSE connection pool
-CONNS = []
+# require "#{PATH}/lib/passenger_eventmachine_runner"
+# PassengerEventmachineRunner.start
+
+
+R = Redis.connect
+
+require "#{PATH}/lib/event_stream"
 
 
 # Test app config:

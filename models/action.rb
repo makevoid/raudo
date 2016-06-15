@@ -56,11 +56,10 @@ class Action
 
   ##
 
-  attr_reader :server, :connections
+  attr_reader :server
 
-  def initialize(server:, connections:)
+  def initialize(server:)
     @server       = server
-    @connections  = connections
   end
 
   # include DBActionPlugin

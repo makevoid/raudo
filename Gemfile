@@ -3,10 +3,11 @@ source "http://rubygems.org"
 gem "transproc"
 
 gem "sinatra"
-# gem 'sinatra_contrib'
+# gem 'sinatra-contrib'
 gem "voidtools"
-
 gem "haml"
+
+gem "redis"
 
 gem 'omniauth-oauth2'
 gem 'omniauth-google-oauth2'

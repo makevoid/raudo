@@ -7,3 +7,4 @@ tmp/*
 www
 config/session_secret.txt
 config/host.txt
+passenger.*

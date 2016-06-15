@@ -1,5 +1,7 @@
 require_relative "./config/env"
 # require "sinatra/content_for"
+# require "sinatra/streaming"
+require 'json'
 
 
 class App < Sinatra::Base
@@ -97,8 +99,7 @@ class App < Sinatra::Base
     action  = payload["name"].to_sym
     ActionJob.new.async.perform(
       event:       action,
-      app:         app_name,
-      connections: CONNS
+      app:         app_name
     )
     { name: app_name }.to_json
   end
@@ -110,28 +111,13 @@ class App < Sinatra::Base
     payload  = JSON.parse(request.body.read)
     app_name = payload["name"].to_sym
     CreateJob.new.async.perform(
-      app:         app_name,
-      connections: CONNS
+      app:         app_name
     )
     { name: app_name }.to_json
   end
 
-
-  # deploy server sent events
-
-  # set server: 'thin'
-
-  get '/stream', provides: 'text/event-stream' do
-    stream :keep_open do |out|
-      CONNS << out
-      out.callback { CONNS.delete(out) }
-    end
-  end
-
-  get '/test' do
-    CONNS.each do |out|
-      out << "data: #{action}\n\n"
-    end
+  get '/stream' do
+    [200, { "Content-Type" => "text/event-stream;charset=utf-8" }, EventStream.new]
   end
 
 end

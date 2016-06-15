@@ -6,11 +6,10 @@ class Creation
 
   DIR_APPS   = Conf::DIR_APPS
 
-  attr_reader :server, :connections
+  attr_reader :server
 
-  def initialize(server:, connections:)
+  def initialize(server:)
     @server       = server
-    @connections  = connections
   end
 
   def create(app)
