@@ -63,11 +63,6 @@
               %ul.row.inset
                 - for task in tasks.main
                   %li.col.col-45.align-center
-                    :css
-                      .btn-task {
-                        width: 110px;
-                      }
-
                     %button.btn-task.btn.blue.darken-2.action{ data: { action_name: task, app_name: app.name } }
                       = task.capitalize
                 .clear
