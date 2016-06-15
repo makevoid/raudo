@@ -68,8 +68,8 @@
                         width: 110px;
                       }
 
-                    %button.btn-task.btn.blue.darken-2.action.left{ data: { action_name: task, app_name: app.name } }
-                      = task
+                    %button.btn-task.btn.blue.darken-2.action{ data: { action_name: task, app_name: app.name } }
+                      = task.capitalize
                 .clear
                 .separator30
               .separator15
@@ -79,8 +79,8 @@
                 %ul.row
                   - for task_db in tasks.sub.db
                     %li.col.col-45.align-center
-                      %button.btn.blue.action.left{ data: { action_name: task_db, app_name: app.name } }
-                        = task_db
+                      %button.btn.blue.action{ data: { action_name: task_db, app_name: app.name } }
+                        = task_db.capitalize
                   .clear
 
                   .separator30
@@ -91,8 +91,8 @@
                 %ul.row
                   - for task_monitoring in tasks.sub.monitoring
                     %li.col.col-45.align-center
-                      %button.btn.blue.action.left{ data: { action_name: task_monitoring, app_name: app.name } }
-                        = task_monitoring
+                      %button.btn.blue.action{ data: { action_name: task_monitoring, app_name: app.name } }
+                        = task_monitoring.capitalize
                   .clear
 
                   .separator30
