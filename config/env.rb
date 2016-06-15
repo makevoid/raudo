@@ -9,7 +9,7 @@ APP_ENV = env
 
 ALLOWED_USERS = [
   "makevoid@gmail.com",
-  "edward@tallysticks.io",
+  # "edward@tallysticks.io",
   # "filippo.oretti@gmail.com",
   # "720kb.net@gmail.com",
   # "okkio84@gmail.com",
@@ -48,16 +48,22 @@ end
 AppInst = AppInstance
 
 
+# SSE connection pool
+CONNS = []
+
+
+# Test app config:
+
 # url: https://console.developers.google.com
 #      https://console.developers.google.com/project/PROJECT/apiui/credential
 
 # Authorized JavaScript origins
 #
-#   http://1b69e9da.ngrok.com
+#   http://mkvd.eu.ngrok.com
 
 # Authorized redirect URIs
 #
-#   http://1b69e9da.ngrok.com/auth/google_oauth2/callback
+#   http://mkvd.eu.ngrok.com/auth/google_oauth2/callback
 
 
 # TODO: require_relative lib/exec
