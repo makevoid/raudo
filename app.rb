@@ -1,7 +1,6 @@
 require_relative "./config/env"
 # require "sinatra/content_for"
 
-CONNS = []
 
 class App < Sinatra::Base
 
@@ -120,7 +119,7 @@ class App < Sinatra::Base
 
   # deploy server sent events
 
-  set server: 'thin', connections: []
+  # set server: 'thin'
 
   get '/stream', provides: 'text/event-stream' do
     stream :keep_open do |out|
