@@ -46,6 +46,11 @@ class Action
     cmd = "npm install"
     dir = DIR_APP % app
     ssh cmd, dir: dir
+
+    puts "executing rollup:"
+    cmd = "rollup -c config/rollup.js"
+    dir = DIR_APP % app
+    ssh cmd, dir: dir
   end
 
   def rake(app:)
