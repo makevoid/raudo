@@ -23,7 +23,7 @@ class App < Sinatra::Base
   use OmniAuth::Builder do
     provider :google_oauth2, CONFIG[:google_oauth_identifier], CONFIG[:google_oauth_secret]
   end
-  OmniAuth.config.allowed_request_methods = %i[get]
+  OmniAuth.config.allowed_request_methods = %i( get )
 
 
   set :show_exceptions, false
