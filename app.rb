@@ -3,8 +3,15 @@ require_relative "./config/env"
 # require "sinatra/streaming"
 require 'json'
 
+Logger.class_eval { alias :write :'<<' }
+LOGG = Logger.new STDOUT
 
 class App < Sinatra::Base
+  set :logger, LOGG
+
+  configure do
+    use Rack::CommonLogger, LOGG
+  end
 
   include Voidtools::Sinatra::ViewHelpers
 
@@ -16,6 +23,7 @@ class App < Sinatra::Base
   use OmniAuth::Builder do
     provider :google_oauth2, CONFIG[:google_oauth_identifier], CONFIG[:google_oauth_secret]
   end
+  OmniAuth.config.allowed_request_methods = %i[get]
 
 
   set :show_exceptions, false
@@ -26,7 +34,10 @@ class App < Sinatra::Base
     { error: { name: error.class, message: error.message, backtrace: error.backtrace } }.to_json
   end
 
-  PUBLIC_URLS = []
+  PUBLIC_URLS = %w(
+    /stream
+    /auth/google_oauth2
+  )
 
   before do
     if APP_ENV != "development"
@@ -63,12 +74,13 @@ class App < Sinatra::Base
   helpers do
     def nav_link(label)
       url   = "/#{label.downcase}"
-      klass = "active" if request.path =~ /^#{url}/
-      haml_tag :li, class: klass do
-        haml_tag :a, href: url do
-          haml_concat label
-        end
-      end
+      # klass = "active" if request.path =~ /^#{url}/
+      # haml_tag :li, class: klass do
+      #   haml_tag :a, href: url do
+      #     haml_concat label
+      #   end
+      # end
+      "<li><a href=\"#{url}\">#{label}</a></li>"
     end
   end
 

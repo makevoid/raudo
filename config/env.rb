@@ -19,11 +19,7 @@ CONFIG = {}
 
 
 DEV_USERNAME = `whoami`.strip
-gauth_config_path = if DEV_USERNAME == "45kb"
-  "#{PATH}/.google_auth"
-else
-  "~/.google_auth"
-end
+gauth_config_path = File.expand_path "~/.google_credentials_oauth_1_wavenet.txt"
 
 # TODO: auto generate key with: SecureRandom.base64 and write if not present
 auth = File.read(File.expand_path gauth_config_path)
@@ -42,14 +38,14 @@ Dir["#{path}/models/*.rb"].each do |app|
 end
 
 # aliases
-AppInst = AppInstance
+# AppInst = AppInstance
 
 
 # require "#{PATH}/lib/passenger_eventmachine_runner"
 # PassengerEventmachineRunner.start
 
 
-R = Redis.connect
+R = Redis.new
 
 require "#{PATH}/lib/event_stream"
 

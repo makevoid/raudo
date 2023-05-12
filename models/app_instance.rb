@@ -9,13 +9,13 @@ APP_INSTS = [
 # app = Qualcosa.deploy app: AppDef.new(antani: true), host: Host.new(:antani)
 
 
-Transproc.register :to_json, -> v { JSON.dump v }
+# Transproc.register :to_json, -> v { JSON.dump v }
 
 class AppInstance
   include RemoteExecution
 
-  require 'transproc/all'
-  include Transproc::Helper
+  # require 'transproc/all'
+  # include Transproc::Helper
 
   WWW_PATH = "/www"
 
@@ -39,12 +39,13 @@ class AppInstance
   private
 
   def namize(array)
-    t_hash_name = -> value do
-      { name: value }
-    end
-    t_mash = -> hash { Hashie::Mash.new hash }
-    proc = t(:map_array, t_hash_name) >> t(:map_array, t_mash)
-    proc.(array)
+    # t_hash_name = -> value do
+    #   { name: value }
+    # end
+    # t_mash = -> hash { Hashie::Mash.new hash }
+    # proc = t(:map_array, t_hash_name) >> t(:map_array, t_mash)
+    # proc.(array)
+    array
   end
 
   def split(list)

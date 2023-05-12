@@ -98,8 +98,9 @@ var on_sse_received = function(message) {
 bind_create_button()
 bind_action_buttons()
 
-var es = new EventSource('/stream')
-es.onmessage = on_sse_received
+// TODO reactivate
+// var es = new EventSource('/stream')
+// es.onmessage = on_sse_received
 
 
 

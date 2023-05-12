@@ -14,4 +14,8 @@ gem 'omniauth-google-oauth2'
 
 gem 'sucker_punch', '~> 1.0'
 
-gem "thin"
+# gem "thin"
+
+gem "puma"
+
+# gem "eventmachine" 1.2.7

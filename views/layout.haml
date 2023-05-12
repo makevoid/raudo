@@ -5,7 +5,7 @@
 
     %link{ rel:"stylesheet", href: "/bower_components/materialize/dist/css/materialize.min.css", type:"text/css" }
     %link{ rel:"stylesheet", href: "/bower_components/fontawesome/css/font-awesome.min.css", type: "text/css" }
-    %link{ rel:"stylesheet", href: "/font/montserrat.woff2"}
+    -# %link{ rel:"stylesheet", href: "/font/montserrat.woff2"}
     %link{ rel:"stylesheet", href: "/main.css", type:"text/css" }
     %link{ rel:"stylesheet", href: "/progress-bar.css", type:"text/css" }
     %meta{ content: "width=device-width, initial-scale=1",  name: "viewport"}/
@@ -59,7 +59,7 @@
 
     %section.container
       .separator15
-      = yield
+      != yield
 
     %script{ src: "/bower_components/jquery/dist/jquery.min.js" }
     %script{ src: "/bower_components/materialize/dist/js/materialize.min.js" }

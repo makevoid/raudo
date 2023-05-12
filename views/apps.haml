@@ -25,7 +25,7 @@
   .separator30
 .row
   %ul.collapsible.active{ data: { collapsible: "accordion" } }
-    - AppInstance.all.each do |app|
+    -# - AppInstance.all.each do |app|
       %li{ data: { app_name: app.name } }
         .collapsible-header
           %i.mdi-image-filter-drama

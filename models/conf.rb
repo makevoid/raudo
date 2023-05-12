@@ -2,7 +2,7 @@ class Conf
   DIR_APPS = "/www"
 
   HOST_CONF   = "#{PATH}/config/host.txt"
-  LOADED_HOST = if File.exists? HOST_CONF
+  LOADED_HOST = if File.exist? HOST_CONF
     File.read(HOST_CONF).strip
   end
 
