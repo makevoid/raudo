@@ -1,5 +1,13 @@
 # Raudo
 
+### notes:
+
+Install eventmachine on mac m1:
+
+```
+PKG_CONFIG_PATH="$(brew --prefix openssl)/lib/pkgconfig" gem install eventmachine
+```
+
 ### current status
 
 screenshots:
@@ -26,7 +34,7 @@ You need to go to Google developer console (https://console.developers.google.co
 - Create a new application
 - Add a OAuth 2.0 client IDs App credential
 - specify an authorized callback/redirect url: http://YOUR_HOST/auth/google_oauth2/callback
-- Enable the Google+ API ( https://console.developers.google.com/apis/api/plus/overview ) 
+- Enable the Google+ API ( https://console.developers.google.com/apis/api/plus/overview )
 
 Then add your CLIENT ID and SECRET in the `~/.google_auth` file on your web user (`www` or `www-data` usually)
 
@@ -41,7 +49,7 @@ Enjoy!
 TODO:
 
 - refuse to start the app if rack session is not set
-- list page: include the git commit hash 
+- list page: include the git commit hash
 - add mruby integration for nginx: https://github.com/matsumoto-r/ngx_mruby
 - logs
 - slack integration (notification)
