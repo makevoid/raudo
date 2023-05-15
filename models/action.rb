@@ -14,13 +14,18 @@ class Action
 
   # TASKS = %w(deploy restart setup db_create db_migrate)
 
+  IP_A = "xxx.xxx.xxx.168"
+  IP_B = "xxx.xxx.xxx.216"
+
   def deploy(app:)
     # branch = "master"
     # branch = split repo, :branch # repo = "makevoid/mkdeploy:master" <|> "username/repo:branch"
-    dir = DIR_APP % app
-    # ssh "git pull origin #{branch}", dir: dir
-    ssh "/usr/local/bin/git-up", dir: dir
-    restart app: app
+    # dir = DIR_APP % app
+    # # ssh "git pull origin #{branch}", dir: dir
+    # ssh "/usr/local/bin/git-up", dir: dir
+    # restart app: app
+
+    sh "ssh root@#{IP_A} docker stack deploy -c docker-compose.yml --with-registry-auth mkvd"
   end
 
   def restart(app:)
